@@ -1,0 +1,235 @@
+.text-center {
+    text-align: center!important;
+}
+.form-signin {
+    margin-top: 100px !important;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+.form-signin h1{
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 74px;
+    margin-bottom: 13px !important;
+}
+.content-CI{
+    margin-top: 50px;
+    text-align: center;
+}
+.content-CI h2{
+    text-transform: uppercase;
+}
+button.btn.btn-primary.btn-sm a{
+    color: #fff !important;
+}
+.form-container{
+	width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+legend{
+    text-align: center !important;
+}
+/* .input-btn{
+    text-align: right
+} */
+.berita-text {
+    text-align: left;
+    /* margin-left: 360px; */
+}
+.btn-container{
+    text-align: right;
+    margin-bottom: 20px;
+}
+.berita-img {
+    float: left;
+    max-width: 200px;
+    max-height: 160px;
+    overflow: hidden;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+.container a {
+    color: #2C3E50 !important;
+}
+.m-det-cont{
+    text-align: center;
+    margin: auto;
+    max-width: 300px;
+}
+
+#header{        
+    background: #65b046;
+    height: 50px;
+}
+
+#header ul{
+    font-size: 14px;
+    font-family: arial;
+    list-style: none;
+}
+#header ul li a{
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    line-height: 50px;
+    width: 150px;
+    color: white; 
+}
+#header ul li a:hover{
+    transition: 0.4s;
+    background: #79c55a;
+    cursor: pointer;
+}
+#footer{
+    background: #3ca956;
+    bottom: 0;
+}
+.btndetail{
+    color: black;
+    background: lightgrey;
+    height: 24px;
+    font-size: 12px;
+    border: none;
+}
+.btnedit{
+    height: 24px;
+    font-size: 12px;
+    color: black;
+    background: lightgrey;
+    border: none;
+}
+.btnhapus{
+    color: black;
+    background: lightgrey;
+    height: 24px;
+    font-size: 12px;
+    border: none;
+}
+.tbl-mhs{
+    font-size: 12px;
+    margin-top: 0px;
+}
+.btn-search{
+    background: lightgrey;
+    font-size: 12px;
+    height: 30px;
+}
+.form-search{
+    font-size: 12px;
+    height: 30px;
+}
+.add-data{
+    background: red;
+    font-size: 12px;
+    margin-right: 1%;
+}
+.add-data:hover{
+    transition: 0.4s;
+    background: darkred;
+}
+.download-data{
+    background: blue;
+    font-size: 12px;
+    margin-right: 1%;
+}
+.download-data:hover{
+    transition: 0.4s;
+    background: darkblue;
+}
+.viewall-data{
+    background: #00cc00;
+    font-size: 12px;
+    margin-right: 1%;
+}
+.viewall-data:hover{
+    transition: 0.4s;
+    background: #009900;
+}
+.form{  
+    margin-top: 20px;
+}
+.formact{
+    border-radius: 15px;
+    background: #f2f2f2;
+}
+.formedit{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.login{
+    background: #f2f2f2;
+}
+.btn-login{
+    background: #003cb3;
+    color: white;
+}
+.btn-login:hover{
+    background: darkblue;
+}
+.listshop{
+    float: left; 
+    text-align: center;
+    border-top: 6px solid #f2f2f2;
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    padding-top: 30px;
+    margin-bottom: 20px; 
+}
+.listshop1{
+    float: left;
+    margin-top: 50px; 
+    text-align: center;
+}
+.listshop2{
+    float: left;
+    margin-top: 50px; 
+    text-align: center;
+    border-left: 1px solid lightgrey;
+}
+.btnview{
+    width: 200px;
+    background: lavender;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.btnview:hover{
+    transition: 0.4s;
+    background: lightgrey;
+}
+.nav-link{
+    line-height: 7px;
+    height: 25px;
+}
+.btnadd{
+    background: green;
+    font-size: 14px;
+}
+.btnadd:hover{
+    transition: 0.4s;
+    background: lightgrey;
+}
+.formaddcart{
+    width: 200px;
+    margin-top: 5px;
+}
+.btn{
+    font-size: 14px;
+    color: white;
+}
+.headercart ul{
+    list-style: none;
+}
+.headercart ul li{
+    background: white;
+    height: 40px;
+    width: 120px;
+    line-height: 40px;
+    text-align: center;
+}
+.headercart ul li:hover{
+    transition: 0.4s;
+    background: lavender;
+}
