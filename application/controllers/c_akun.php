@@ -42,8 +42,7 @@ class c_akun extends CI_Controller{
  
 			$this->session->set_userdata($data_session);
  
-			// redirect(base_url("/"));
-			echo  $cek->nama;
+			redirect(base_url("/"));
  
 		}else{
 			echo "Username dan password salah !";

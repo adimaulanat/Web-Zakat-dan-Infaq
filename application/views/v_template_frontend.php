@@ -19,7 +19,8 @@
 		      <li style="float: right;"><a data-toggle="modal" href="#modalRegisterForm">Daftar</a></li>
 			  <li style="float: right;"><a data-toggle="modal" href="#modalLoginForm">Log In</a></li>
 			  <li style="float: right;"><?php echo anchor('c_home/display_user','ke page User') ?></li>
-			  <li style="float: right;"><?php echo anchor('c_home/display_admin','ke page Admin') ?></li>s
+			  <li style="float: right;"><?php echo anchor('c_home/display_admin','ke page Admin') ?></li>
+			  <li style="float: right;"><?php echo anchor('c_zakat/display','Zakat') ?></li>
 		      <!-- <li><?php /*echo anchor('c_frontend_cart/display','SHOPPING CART')*/ ?></li> -->
 		      <?php } ?>
 		    </ul>
