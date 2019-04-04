@@ -66,7 +66,32 @@ class C_zakat extends CI_Controller{
 		}
 	}
 
-	// Menampilkan form untuk menambah zakat
+	// Fungsi mengupload bukti pembayaran
+	function upload_bukti_pembayaran_infaq(){
+		$vusername = $_SESSION['username'];
+		$vid = $this->input->post('ids');
+		
+		$config['upload_path']          = './assets/img/';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 500;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+ 
+		$this->load->library('upload', $config);
+ 		
+		if ( ! $this->upload->do_upload('foto_bukti_pembayaran')){
+			echo $this->upload->data('file_name');
+			echo $this->upload->display_errors();
+			//$this->load->view('v_template_frontend', $error);
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+			$vfoto = $this->upload->data('file_name');
+			// $this->load->view('v_template_frontend', $data);
+			$this->m_zakat->update_bukti_pembayaran_infaq($vusername, $vid, $vfoto);
+			redirect('C_zakat/infaq_display');
+		}
+	}
+
 	// Menampilkan form untuk menambah zakat
 	function add(){
 		$data['content_view'] = "v_tambah_zakat.php";
