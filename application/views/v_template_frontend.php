@@ -15,18 +15,24 @@
 		    <ul>
 		      <?php if($this->session->userdata('status') == "login"){?>
 		      <li style="float: right;"><?php echo anchor('c_akun/logout','LOG OUT') ?></li>
+			  <li><?php echo anchor('c_zakat/display','Zakat') ?></li>
+			  <li><?php echo anchor('c_zakat/infaq_display','Infaq') ?></li>
 <?php			} else{ ?>
 		      <li style="float: right;"><a data-toggle="modal" href="#modalRegisterForm">Daftar</a></li>
 			  <li style="float: right;"><a data-toggle="modal" href="#modalLoginForm">Log In</a></li>
-			  <li style="float: right;"><?php echo anchor('c_home/display_user','ke page User') ?></li>
-			  <li style="float: right;"><?php echo anchor('c_home/display_admin','ke page Admin') ?></li>
-			  <li style="float: right;"><?php echo anchor('c_zakat/display','Zakat') ?></li>
+			  
+			  
 		      <!-- <li><?php /*echo anchor('c_frontend_cart/display','SHOPPING CART')*/ ?></li> -->
 		      <?php } ?>
 		    </ul>
     </div> 
 
 	 <div id="content" style="position:absolute; top:50px; bottom:40px; left:0px; right:0px; overflow:auto;"> 
+	 	<?php	
+	 	if($content_view == "v_home.php"){
+	 		?>
+		    <center><img style="margin-top: 5px;" width="90%" src="<?php echo base_url() ?>assets/img/zakat.jpg"></center>
+		<?php } ?>
     	<div class="container custom-body">
 			<?php $this->load->view($content_view) ?>
     	</div>

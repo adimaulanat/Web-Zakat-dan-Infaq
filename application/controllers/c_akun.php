@@ -36,13 +36,14 @@ class c_akun extends CI_Controller{
 		if($cek){
 			$data_session = array(
 				'nama' => $cek->nama,
+				'username' => $cek->username,
 				'jenis' => $cek->status,
 				'status' => "login",
 			);
- 
+ 			
 			$this->session->set_userdata($data_session);
- 
-			redirect(base_url("/"));
+ 		
+			redirect(site_url("c_zakat/display"));
  
 		}else{
 			echo "Username dan password salah !";
