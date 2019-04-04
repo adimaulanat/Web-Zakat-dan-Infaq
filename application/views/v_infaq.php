@@ -49,11 +49,11 @@
 			<td>
 				<?php 
 					if($row->status != 0){?>
-						<img src="<?php echo base_url() ?>image/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
+						<img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
 					<?php
 					}
 					if($row->status == 0){?>
-						<a data-toggle="modal" href="#modalUpPembayaran"><button type="button" class="btn btn-primary btn-sm">Upload bukti pembayaran</button></a><?php 
+						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button></a><?php 
 					} 
 				?>
 			</td>
@@ -70,7 +70,7 @@
 			<?php
 				if($_SESSION['jenis'] == 1){
 					if($row->status == 0){
-						?><td><?php echo $status ?></td><?php
+						?><td><button disabled class="btn btn-danger btn-sm nav-link" type="button">Verifikasi</button></td> <?php
 					} else if($row->status == 1){
 						?><td><button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi_infaq/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button></td> <?php
 					} else if($row->status == 2) {
@@ -110,7 +110,7 @@
 					<div class="form-group">
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Infaq :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<input type="number"  class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
+							<input type="number" class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
 						</div>
 					</div>
 					<div class="modal-footer d-flex justify-content-center">
@@ -151,7 +151,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Tambah Zakat</h4>
+						<h4 class="modal-title w-100 font-weight-bold">Tambah Infaq</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -160,7 +160,7 @@
 						echo form_open_multipart('C_zakat/upload_bukti_pembayaran_infaq',array('class' => 'form-horizontal Edit')); 
 					?>
 					<div class="form-group">
-						<input type="hidden"  class="form-control" id="ids" name="ids">
+						<input type="hidden" class="form-control" id="ids" name="ids">
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Bukti Pembayaran :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type='file' name="foto_bukti_pembayaran" id="upPembayaran" class="form-control"/>

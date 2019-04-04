@@ -57,6 +57,13 @@ class M_zakat extends CI_Model{
         $query = $this->db->query("INSERT INTO zakat (id, username, nominal_gaji, nominal_zakat, bukti_pembayaran, tanggal_input, tanggal_bayar, tanggal_verifikasi, status) VALUES (NULL, '$vusername', '$vnominal_gaji', '$vnominal_zakat', '', '$vtanggal_input', '', '', '0');");
     }
 
+    // menginputkan/menambahkan zakat baru
+    function insert_infaq($vusername, $vnominal_infaq){
+        $vtanggal_input=date("Y-m-d");
+        $query = $this->db->query("INSERT INTO infaq (id, username, nominal_infaq, bukti_pembayaran, tanggal_input, tanggal_bayar, tanggal_verifikasi, status) 
+        VALUES (NULL, '$vusername', '$vnominal_infaq', '', '$vtanggal_input', '', '', '0');");
+    }
+
     // untuk upload bukti pembayaran
     function update_bukti_pembayaran($vusername, $vid, $vbukti_pembayaran){
         $vtanggal_bayar=date("Y-m-d");
