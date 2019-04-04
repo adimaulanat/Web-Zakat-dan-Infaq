@@ -1,56 +1,102 @@
 <div>
+	<?php function rupiah($angka){
+	
+	$hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+ 
+	} ?>
 	<br>
 	<h1 style="font-size: 15px;">Selamat Datang, <?php echo $_SESSION['nama']; ?></h1>
 	<hr class="my-2">
 	<center>
 		<br>
 		<h3>
-			Data Infaq
+			Data Zakat
 		</h3>
 		<br>
 	</center>
-	<a data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
-	<br><br>
 
 	<table class="table table-bordered table-striped">
 		<tr style="font-size: 14px;">
-			<th>ID</th>
+			<th>No</th>
 			<th>Nominal Infaq</th>
 			<th>Tanggal Input</th>
 			<th>Tanggal Bayar</th>
 			<th>Tanggal Verifikasi</th>
 			<th>Bukti Pembayaran</th>
 			<th>Status</th>
+			<?php if($_SESSION['jenis'] == 1){ ?>
+			<th>Verifikasi</th>
+			<?php } ?>	
 		</tr>
 		<?php
-			foreach ($list_infaq->result() as $row){
+			if(($_SESSION['jenis']) == 0 ){
+				$listdata = $user;
+			} else if(($_SESSION['jenis']) == 1 ) {
+				$listdata = $admin;
+			}
+		$no = 1;
+			foreach ($listdata as $row){
 		?>
 		<tr style="font-size: 12px;">
-			<td><?php echo $row->id; ?></td>
-			<td><?php echo $row->nominal_infaq; ?></td>
+			<?php $page = $_SESSION['page'] + $no; ?>
+			<td><?php echo $page; ?></td>
+			<td><?php echo rupiah($row->nominal_infaq); ?></td>
 			<td><?php echo $row->tanggal_input; ?></td>
 			<td><?php echo $row->tanggal_bayar; ?></td>
 			<td><?php echo $row->tanggal_verifikasi; ?></td>
+			<?php if(($_SESSION['jenis']) == 0 ){?>
 			<td>
 				<?php 
 					if($row->status != 0){?>
-						<img src="<?php echo base_url() ?>assets/image/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
+						<img src="<?php echo base_url() ?>image/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
 					<?php
 					}
 					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button>
-						<!-- <button type="button" class="btn btn-primary btn-sm"><?php //echo anchor('c_zakat/update/'.$row->username.'/'.$row->id,'Upload Bukti Pembayaran',array('class' => 'nav-link')) ?></button> -->
-				<?php 
+						<a data-toggle="modal" href="#modalUpPembayaran"><button type="button" class="btn btn-primary btn-sm">Upload bukti pembayaran</button></a><?php 
 					} 
 				?>
 			</td>
-			<td><?php echo $row->status; ?></td>
+			<?php } else { ?>
+			<td>foto pembayaran</td> <?php } ?>
+			<?php if($row->status == 0){
+				$status = "Belum melakukan pembayaran";
+			} else if($row->status == 1){
+				$status = "Belum di Verifikasi";
+			} else if($row->status == 2) {
+				$status = "Sudah di Verifikasi";
+			}?>
+			<td><?php echo $status ?></td>
+			<?php
+				if($_SESSION['jenis'] == 1){
+					if($row->status == 0){
+						?><td><?php echo $status ?></td><?php
+					} else if($row->status == 1){
+						?><td><button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi_infaq/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button></td> <?php
+					} else if($row->status == 2) {
+						?><td><?php echo $status ?></td><?php
+			} 
+		}?>
+
 		</tr>
 		
 		<?php
+		$no++;
 			}
+		if($_SESSION['jenis'] == 0){
 		?>
+
+	<a data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
+	<br>
+<?php } ?>
+	<br>
 	</table>
+	</div>
+</div>
+		<center><?php 
+		echo $this->pagination->create_links();
+	    ?></center>
+
 
 		<div class="modal fade" id="modalAddInfaq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -62,7 +108,7 @@
 						</button>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Gaji :</label>
+						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Infaq :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="number"  class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
 						</div>
