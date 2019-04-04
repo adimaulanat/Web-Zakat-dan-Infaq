@@ -50,16 +50,12 @@
 			<?php if(($_SESSION['jenis']) == 0 ){?>
 			<td>
 				<?php 
-					if($row->status != 0){
-				?>
-						<img src="<?php echo base_url() ?>/assets/image/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
-				<?php
+					if($row->status != 0){?>
+						<img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
+					<?php
 					}
-					if($row->status == 0){
-				?>
-						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button>
-						<!-- <a data-toggle="modal" data-id="<?php //echo $row->id; ?>" href="#infoRek"><button type="button" class="btn btn-primary btn-sm">Upload bukti pembayaran</button></a> -->
-				<?php 
+					if($row->status == 0){?>
+						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
 					} 
 				?>
 			</td>
@@ -76,13 +72,14 @@
 			<?php
 				if($_SESSION['jenis'] == 1){
 					if($row->status == 0){
-						?><td><?php echo $status ?></td><?php
+						?><td><button disabled class="btn btn-danger btn-sm nav-link" type="button">Verifikasi</button></td> <?php
 					} else if($row->status == 1){
 						?><td><button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button></td> <?php
 					} else if($row->status == 2) {
 						?><td><?php echo $status ?></td><?php
 			} 
 		}?>
+
 		</tr>
 		
 		<?php
@@ -95,55 +92,15 @@
 	<br>
 <?php } ?>
 	<br>	
-	<div class="modal fade" id="modalAddZakat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Tambah Zakat</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<?php
-	        		echo form_open_multipart('C_zakat/insert',array('class' => 'form-horizontal Edit')); ?>
-					<div class="form-group">
-						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Gaji :</label>
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<input type="number"  class="form-control" id="nominal_gaji" placeholder="Masukkan Gaji" name="nominal_gaji">
-						</div>
-					</div>
-					<div class="modal-footer d-flex justify-content-center">
-						<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#infoRek">Tambah</button>
-					</div>
-					<?php
-						echo form_close();
-					?>	
-				</div>
-			</div>
-		</div>
 
-		<div class="modal fade" id="infoRek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Informasi Pembayaran</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-header text-center">
-						<p>Pembayaran Zakat bisa melalui No. Rekening : <b>8537 9348 3489</b></p>
-					</div>
-					<?php
-						echo form_close();
-					?>	
-				</div>
-			</div>
-		</div>
+	
 
 	</table>
 	</div>
 </div>
+		<center><?php 
+		echo $this->pagination->create_links();
+	    ?></center>
 
 		<div class="modal fade" id="modalAddZakat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -189,7 +146,7 @@
 						</div>
 					<?php
 						echo form_close();
-						?>	
+					?>	
 				</div>
 			</div>
 		</div>
@@ -207,7 +164,7 @@
 						echo form_open_multipart('C_zakat/upload_bukti_pembayaran',array('class' => 'form-horizontal Edit')); 
 						?>
 					<div class="form-group">
-						<input type="hidden"  class="form-control" id="ids" name="ids">
+						<input type="hidden" class="form-control" id="ids" name="ids">
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Bukti Pembayaran :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type='file' name="foto_bukti_pembayaran" id="upPembayaran" class="form-control"/>
@@ -222,9 +179,6 @@
 						?>	
 			</div>
 		</div>
-						<center><?php 
-						echo $this->pagination->create_links();
-							?></center>
 <script>
 	$('#confBtn').click(function() {
 		$('#nominal_gaji').val($('#nominal_gaji1').val());
