@@ -18,7 +18,7 @@
 
 	<table class="table table-bordered table-striped">
 		<tr style="font-size: 14px;">
-			<th>ID</th>
+			<th>No</th>
 			<th>Nominal Gaji</th>
 			<th>Nominal Zakat</th>
 			<th>Tanggal Input</th>
@@ -32,14 +32,16 @@
 		</tr>
 		<?php
 			if(($_SESSION['jenis']) == 0 ){
-				$list = $list_zakat->result();
+				$listdata = $user;
 			} else if(($_SESSION['jenis']) == 1 ) {
-				$list = $list_zakat_all->result();
+				$listdata = $admin;
 			}
-			foreach ($list as $row){
+		$no = 1;
+			foreach ($listdata as $row){
 		?>
 		<tr style="font-size: 12px;">
-			<td><?php echo $row->id; ?></td>
+			<?php $page = $_SESSION['page'] + $no; ?>
+			<td><?php echo $page; ?></td>
 			<td><?php echo rupiah($row->nominal_gaji); ?></td>
 			<td><?php echo rupiah($row->nominal_zakat); ?></td>
 			<td><?php echo $row->tanggal_input; ?></td>
@@ -77,9 +79,11 @@
 						?><td><?php echo $status ?></td><?php
 			} 
 		}?>
+
 		</tr>
 		
 		<?php
+		$no++;
 			}
 		if($_SESSION['jenis'] == 0){
 		?>
@@ -137,3 +141,6 @@
 	</table>
 	</div>
 </div>
+		<center><?php 
+		echo $this->pagination->create_links();
+	    ?></center>

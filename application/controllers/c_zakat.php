@@ -12,10 +12,26 @@ class C_zakat extends CI_Controller{
 
 	// Menampilkan tabel log zakat
 	function display(){
-		$data['content_view'] = "v_zakat.php";
-		$data['list_zakat'] = $this->m_zakat->get_list_data($_SESSION['username']);
-		$data['list_zakat_all'] = $this->m_zakat->get_list_data_all();
-		$this->load->view('v_template_frontend',$data);
+		$this->load->database();
+        $jumlah_data = $this->m_zakat->jumlah_data();
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'index.php/C_zakat/display/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 5;
+	    $config['prev_link'] = 'Previous&nbsp;|&nbsp;';
+	    $config['next_link'] = '&nbsp;|&nbsp;Next';
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $data['admin'] = $this->m_zakat->data_admin($config['per_page'],$from);
+        $data['user'] = $this->m_zakat->data_user($_SESSION['username'],$config['per_page'],$from);
+        $data['content_view'] = "v_zakat.php";
+        if($this->uri->segment(3)){
+		$_SESSION['page'] = ($this->uri->segment(3)) ;
+		}
+		else{
+		$_SESSION['page'] = 0;
+		}
+        $this->load->view('v_template_frontend',$data);
 	}
 
 	// Menampilkan form untuk upload bukti pembayaran
@@ -73,7 +89,7 @@ class C_zakat extends CI_Controller{
 
 	function insert_infaq(){
 		$vusername = $_SESSION['username'];
-		$vnominal_infaq = $this->m_zakat->post('nominal_infaq');
+		$vnominal_infaq = $this->input->post('nominal_infaq');
 
 		$this->m_zakat->insert_infaq($vusername, $vnominal_infaq);
 		redirect('C_zakat/infaq_display');

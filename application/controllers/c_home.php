@@ -22,4 +22,14 @@ class c_home extends CI_Controller{
 		$data['content_view']="v_admin.php";
 		$this->load->view('v_template_frontend',$data);
 	}	
+
+	function detailberita(){
+		$data['content_view'] = "v_detailberita.php";
+		$id=$this->uri->segment(3);
+		$this->load->model('m_home');
+		$detail = $this->m_home->get_detailberita($id);
+		$data['detail'] = $detail;
+		$this->load->view('v_template_frontend',$data);
+
+	}
 }	

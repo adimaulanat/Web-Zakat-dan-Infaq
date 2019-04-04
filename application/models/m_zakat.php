@@ -2,11 +2,19 @@
 
 class M_zakat extends CI_Model{
 
+    function data_admin($number,$offset){
+        return $query = $this->db->get('zakat',$number,$offset)->result();     
+    }
+
+    function data_user($username,$number,$offset){
+        return $query = $this->db->get_where('zakat',array('username'=>$username),$number,$offset)->result();     
+    }
+
     // menampilkan data zakat (log)
-	function get_list_data($vusername)
-	{
-		$query=$this->db->query("SELECT * FROM zakat WHERE username = '$vusername' ORDER BY id");
-		return $query;
+    function get_list_data($vusername)
+    {
+        $query=$this->db->query("SELECT * FROM zakat WHERE username = '$vusername' ORDER BY id");
+        return $query;
     }
 
     // menampilkan data zakat (log)
@@ -20,6 +28,17 @@ class M_zakat extends CI_Model{
     {
         $query=$this->db->query("SELECT * FROM infaq WHERE username = '$vusername' ORDER BY id");
         return $query;
+    }
+
+    public function get_total_search($username) 
+    {   
+        $query = $this->db->query("SELECT * FROM zakat where username LIKE '%$username%' ");
+        return $query->num_rows();
+    }
+
+     public function get_total() 
+    {
+        return $this->db->count_all("zakat");
     }
 
     // menginputkan/menambahkan zakat baru
@@ -48,6 +67,11 @@ class M_zakat extends CI_Model{
     function update_verifikasi_pembayaran($vusername, $vid){
         $vtanggal_verifikasi=date("Y-m-d");
         $query = $this->db->query("UPDATE zakat set tanggal_verifikasi = '$vtanggal_verifikasi', status = '2' WHERE username = '$vusername' AND id = $vid");
+    }
+
+ 
+    function jumlah_data(){
+        return $this->db->get('zakat')->num_rows();
     }
 }
 ?>
