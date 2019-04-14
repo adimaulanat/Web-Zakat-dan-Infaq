@@ -11,7 +11,7 @@
 	<center>
 		<br>
 		<h3>
-			Data Zakat
+			Data Infaq
 		</h3>
 		<br>
 	</center>
@@ -25,18 +25,10 @@
 			<th>Tanggal Verifikasi</th>
 			<th>Bukti Pembayaran</th>
 			<th>Status</th>
-			<?php if($_SESSION['jenis'] == 1){ ?>
-			<th>Verifikasi</th>
-			<?php } ?>	
 		</tr>
 		<?php
-			if(($_SESSION['jenis']) == 0 ){
-				$listdata = $user;
-			} else if(($_SESSION['jenis']) == 1 ) {
-				$listdata = $admin;
-			}
 		$no = 1;
-			foreach ($listdata as $row){
+			foreach ($user as $row){
 		?>
 		<tr style="font-size: 12px;">
 			<?php $page = $_SESSION['page'] + $no; ?>
@@ -45,7 +37,6 @@
 			<td><?php echo $row->tanggal_input; ?></td>
 			<td><?php echo $row->tanggal_bayar; ?></td>
 			<td><?php echo $row->tanggal_verifikasi; ?></td>
-			<?php if(($_SESSION['jenis']) == 0 ){?>
 			<td>
 				<?php 
 					if($row->status != 0){?>
@@ -53,42 +44,26 @@
 					<?php
 					}
 					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button></a><?php 
+						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
 					} 
 				?>
 			</td>
-			<?php } else { ?>
-			<td>foto pembayaran</td> <?php } ?>
-			<?php if($row->status == 0){
-				$status = "Belum melakukan pembayaran";
-			} else if($row->status == 1){
-				$status = "Belum di Verifikasi";
-			} else if($row->status == 2) {
-				$status = "Sudah di Verifikasi";
-			}?>
-			<td><?php echo $status ?></td>
-			<?php
-				if($_SESSION['jenis'] == 1){
-					if($row->status == 0){
-						?><td><button disabled class="btn btn-danger btn-sm nav-link" type="button">Verifikasi</button></td> <?php
-					} else if($row->status == 1){
-						?><td><button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi_infaq/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button></td> <?php
-					} else if($row->status == 2) {
-						?><td><?php echo $status ?></td><?php
-			} 
-		}?>
-
+			<td><?php if($row->status == 0){
+				echo "Belum melakukan pembayaran";
+				} else if($row->status == 1){
+				echo "Belum di Verifikasi"; 
+				}                                       
+				else if($row->status == 2) {
+				echo "Sudah di Verifikasi";
+				}?></td>
 		</tr>
 		
 		<?php
 		$no++;
-			}
-		if($_SESSION['jenis'] == 0){
-		?>
+			}?>
 
 	<a data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
 	<br>
-<?php } ?>
 	<br>
 	</table>
 	</div>

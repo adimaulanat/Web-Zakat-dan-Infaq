@@ -61,7 +61,7 @@ legend{
 }
 
 #header{        
-    background: #65b046;
+    background: #375CCE;
     height: 50px;
 }
 
@@ -80,11 +80,11 @@ legend{
 }
 #header ul li a:hover{
     transition: 0.4s;
-    background: #79c55a;
+    background: darkblue;
     cursor: pointer;
 }
 #footer{
-    background: #3ca956;
+    background: #375CCE;
     bottom: 0;
 }
 .btndetail{
@@ -237,4 +237,29 @@ legend{
 .modal-body .message{
     text-align: center;
     color: red;
+}
+
+.pilihanadmin ul{
+    list-style: none;
+}
+
+.ulnav{
+    font-size: 14px;
+    padding-left: 0;
+    list-style: none;
+}
+.ulnav li{
+    padding-left: 0;
+    text-align: center;
+}
+.zakatinfaqnav a{
+    text-decoration: none;
+    line-height: 50px;
+    /*width: 150px;*/
+    color: white; 
+}
+.zakatinfaqnav a:hover{
+    transition: 0.4s;
+    color: lightgrey;
+    cursor: pointer;
 }

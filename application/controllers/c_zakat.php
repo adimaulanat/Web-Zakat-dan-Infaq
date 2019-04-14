@@ -5,9 +5,6 @@ class C_zakat extends CI_Controller{
 		parent::__construct();
 		$this->load->model('m_zakat','',TRUE);
 
-		// if($this->session->userdata('status') != "login"){
-		// 	redirect(site_url("c_login/index"));
-		// }
 	}
 
 	// Menampilkan tabel log zakat
@@ -145,18 +142,66 @@ class C_zakat extends CI_Controller{
 		
 	function verifikasi()
 	{
-		$data['content_view'] = "v_zakat.php";
+		// $data['content_view'] = "v_zakat.php";
 		$id=$this->uri->segment(3);
 		$this->m_zakat->update_verifikasi_pembayaran($id);
-		redirect('C_zakat/display');
+		redirect('C_zakat/zakatAdmin');
 	}	
 
 	function verifikasi_infaq()
 	{
-		$data['content_view'] = "v_infaq.php";
+		// $data['content_view'] = "v_infaq.php";
 		$id=$this->uri->segment(3);
 		$this->m_zakat->update_verifikasi_pembayaran_infaq($id);
-		redirect('C_zakat/infaq_display');
+		redirect('C_zakat/infaqAdmin');
 	}	
+
+	function zakatAdmin(){
+		$this->load->database();
+        $jumlah_data = $this->m_zakat->jumlah_data();
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'index.php/C_zakat/zakatAdmin/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 5;
+	    $config['prev_link'] = '&nbsp;&nbsp;Previous&nbsp;';
+	    $config['next_link'] = '&nbsp;Next&nbsp;&nbsp;';
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $data['admin'] = $this->m_zakat->data_admin($config['per_page'],$from);
+        // $data['user'] = $this->m_zakat->data_user($_SESSION['username'],$config['per_page'],$from);
+        $data['content_view'] = "v_zakatAdmin.php";
+        if($this->uri->segment(3)){
+		$_SESSION['page'] = ($this->uri->segment(3)) ;
+		}
+		else{
+		$_SESSION['page'] = 0;
+		}
+        // $this->load->view('v_template_frontend',$data);
+		$this->load->view('v_admin',$data);
+	}
+
+	function infaqAdmin(){
+		$this->load->database();
+        $jumlah_data = $this->m_zakat->jumlah_data_infaq();
+        $this->load->library('pagination');
+        $config['base_url'] = base_url().'index.php/C_zakat/infaqAdmin/';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 5;
+	    $config['prev_link'] = '&nbsp;&nbsp;Previous&nbsp;';
+	    $config['next_link'] = '&nbsp;Next&nbsp;&nbsp;';
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);     
+        $data['admin'] = $this->m_zakat->data_admin_infaq($config['per_page'],$from);
+        // $data['user'] = $this->m_zakat->data_user($_SESSION['username'],$config['per_page'],$from);
+        $data['content_view'] = "v_infaqAdmin.php";
+        if($this->uri->segment(3)){
+		$_SESSION['page'] = ($this->uri->segment(3)) ;
+		}
+		else{
+		$_SESSION['page'] = 0;
+		}
+        // $this->load->view('v_template_frontend',$data);
+		$this->load->view('v_admin',$data);
+	}
 }
 ?>

@@ -42,8 +42,12 @@ class c_akun extends CI_Controller{
 			);
  			
 			$this->session->set_userdata($data_session);
- 		
-			redirect(site_url("c_zakat/display"));
+ 			
+ 			if($_SESSION['jenis']==0){		
+				redirect(site_url("c_zakat/display"));
+ 			}else if($_SESSION['jenis']==1){		
+				redirect(site_url("c_zakat/zakatAdmin"));
+ 			}
  
 		}else{
 			$data_session = array(

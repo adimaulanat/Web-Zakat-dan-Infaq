@@ -18,25 +18,17 @@ class M_zakat extends CI_Model{
         return $query = $this->db->get_where('infaq',array('username'=>$username),$number,$offset)->result();     
     }
 
-    // // menampilkan data zakat (log)
-    // function get_list_data($vusername)
-    // {
-    //     $query=$this->db->query("SELECT * FROM zakat WHERE username = '$vusername' ORDER BY id");
-    //     return $query;
-    // }
+   function get_list_data($vusername)
+    {
+        $query=$this->db->query("SELECT * FROM zakat WHERE username = '$vusername' ORDER BY id");
+        return $query;
+    }
 
-    // // menampilkan data zakat (log)
-    // function get_list_data_all()
-    // {
-    //     $query=$this->db->query("SELECT * FROM zakat ORDER BY tanggal_input");
-    //     return $query;
-    // }
-
-    // function get_list_data_infaq($vusername)
-    // {
-    //     $query=$this->db->query("SELECT * FROM infaq WHERE username = '$vusername' ORDER BY id");
-    //     return $query;
-    // }
+    function get_list_data_infaq($vusername)
+    {
+        $query=$this->db->query("SELECT * FROM infaq WHERE username = '$vusername' ORDER BY id");
+        return $query;
+    }
 
     public function get_total_search($username) 
     {   
@@ -47,6 +39,18 @@ class M_zakat extends CI_Model{
      public function get_total() 
     {
         return $this->db->count_all("zakat");
+    }
+
+    function get_list_data_all()
+    {
+        $query=$this->db->query("SELECT * FROM zakat ORDER BY tanggal_input");
+        return $query;
+    }
+
+    function get_list_data_all_infaq()
+    {
+        $query=$this->db->query("SELECT * FROM infaq ORDER BY tanggal_input");
+        return $query;
     }
 
     // menginputkan/menambahkan zakat baru
@@ -87,7 +91,7 @@ class M_zakat extends CI_Model{
     }
 
  
-    function jumlah_data(){
+   function jumlah_data(){
         return $this->db->get('zakat')->num_rows();
     }
 
