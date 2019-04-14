@@ -39,11 +39,18 @@
                 echo "Belum melakukan pembayaran";
               } 
             ?></td>
-            <td>Status</td>
+            <td><?php if($row->status == 0){
+            echo "Belum melakukan pembayaran";
+            } else if($row->status == 1){
+            echo "Belum di Verifikasi"; 
+            }                                       
+            else if($row->status == 2) {
+            echo "Sudah di Verifikasi";
+            }?></td>
             <td><?php if($row->status == 0){
               echo "Belum melakukan pembayaran";
             } else if($row->status == 1){ ?>
-              <button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button>
+              <button class="btn btn-primary btn-sm" type="button"><?php echo anchor('c_zakat/verifikasi_infaq/'.$row->id,'Verifikasi',array('class' => 'nav-link'))?></button>
             <?php } else if($row->status == 2) {
               echo "Sudah di Verifikasi";
             }?></td>

@@ -33,7 +33,14 @@
           <td><?php echo $row->tanggal_bayar; ?></td>
           <td><?php echo $row->tanggal_verifikasi; ?></td>
           <td>foto pembayaran</td>
-          <td>Status</td>
+          <td><?php if($row->status == 0){
+          echo "Belum melakukan pembayaran";
+          } else if($row->status == 1){
+          echo "Belum di Verifikasi"; 
+          }                                       
+          else if($row->status == 2) {
+          echo "Sudah di Verifikasi";
+          }?></td>
           <td><?php if($row->status == 0){
             echo "Belum melakukan pembayaran";
           } else if($row->status == 1){ ?>
