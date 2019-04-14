@@ -203,5 +203,15 @@ class C_zakat extends CI_Controller{
         // $this->load->view('v_template_frontend',$data);
 		$this->load->view('v_admin',$data);
 	}
+
+	// Menampilkan tabel log zakat
+	function disprofil(){
+		$data['content_view'] = "v_profilAdmin.php";
+		$this->load->model('m_zakat');
+		$uname = $_SESSION['username'];
+		$profil = $this->m_zakat->get_profil($uname);
+		$data['profil'] = $profil;
+		$this->load->view('v_admin',$data);
+	}
 }
 ?>

@@ -38,7 +38,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" style="color:white;">
         <div class="sidebar-brand-icon">
           <i class="fas fa-user" style="font-size: 20px;"></i>
         </div>
@@ -64,18 +64,19 @@
       </div>
       <br>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      
-        <ul class="ulnav">
-      <li class="nav-item zakatinfaqnav">
-        <?php echo anchor('c_zakat/zakatAdmin','Zakat') ?>
+      <!-- Nav Item - Zakat -->
+      <li class="nav-item">
+        <a class="nav-link" href="../c_zakat/zakatAdmin">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Zakat</span></a>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item zakatinfaqnav">
-        <?php echo anchor('c_zakat/infaqAdmin','Infaq') ?>
+      <!-- Nav Item - Infaq -->
+      <li class="nav-item">
+        <a class="nav-link" href="../c_zakat/infaqAdmin">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Infaq</span></a>
       </li>
-    </ul>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -145,7 +146,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="../c_zakat/disprofil">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>

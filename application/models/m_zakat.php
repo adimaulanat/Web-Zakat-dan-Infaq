@@ -98,5 +98,10 @@ class M_zakat extends CI_Model{
     function jumlah_data_infaq(){
         return $this->db->get('infaq')->num_rows();
     }
+
+    function get_profil($id){
+		$query = $this->db->get_where('akun', array('username' => $id))->row();
+		return $query;
+    }
 }
 ?>

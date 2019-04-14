@@ -10,10 +10,10 @@ class M_home extends CI_Model{
 		return $query;
     }
 
-    function get_detailberita($id){
-		$query = $this->db->get_where('artikel', array('id' => $id))->row();
-		return $query;
- 
+	function get_detailberita($id){
+	$query = $this->db->get_where('artikel', array('id' => $id))->row();
+	return $query;
 	}
+	
 }
 ?>
