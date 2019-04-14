@@ -46,7 +46,12 @@ class c_akun extends CI_Controller{
 			redirect(site_url("c_zakat/display"));
  
 		}else{
-			echo "Username dan password salah !";
+			$data_session = array(
+				'status' => "x",
+			);
+			$this->session->set_userdata($data_session);
+			
+			redirect(site_url("c_home/index"));
 		}
 	}	
 

@@ -82,7 +82,7 @@
 			</div>
 		</div>
 
-		<!-- modal register -->
+		<!-- modal login -->
 		<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -110,6 +110,20 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- modal message -->
+		<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h6 class="modal-title w-100">Username Atau Password Salah</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	
 </body>
 
@@ -124,10 +138,10 @@
 	}
 
 	// $(document).ready(function(){
-	// 	$("#modal_register").click(function(){
-  //   	$("#myModal").modal("toggle");
-  // 	});
+	// 	$('#modalLoginForm').modal('show');
+	// // 	$("#modal_register").click(function(){
+  // //   	$("#myModal").modal("toggle");
+  // // 	});
 	// });
-
   
 </script>

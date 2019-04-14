@@ -33,3 +33,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
     }
 ?>
+<script>
+    <?php
+		if ($_SESSION['status']=="x"){
+	?>
+	$(window).on('load',function(){
+        $('#modalMessage').modal('show');
+    });
+	<?php
+		}
+	?>
+</script>

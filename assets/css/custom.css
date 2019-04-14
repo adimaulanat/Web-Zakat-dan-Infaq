@@ -233,3 +233,8 @@ legend{
     transition: 0.4s;
     background: lavender;
 }
+
+.modal-body .message{
+    text-align: center;
+    color: red;
+}
