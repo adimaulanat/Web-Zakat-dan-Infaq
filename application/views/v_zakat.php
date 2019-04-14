@@ -68,6 +68,8 @@
 			}?>
 
 	<a data-toggle="modal" href="#modalAddZakat"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
+
+	<button type="button" class="btn btn-primary btn-sm"><?php echo anchor('c_zakat/print_user_zakat','Download Pdf',array('class' => 'nav-link')) ?></button>
 	<br>
 
 	<br>	
