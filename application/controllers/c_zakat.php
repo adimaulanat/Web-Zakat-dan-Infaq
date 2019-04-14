@@ -4,6 +4,7 @@ class C_zakat extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('m_zakat','',TRUE);
+		$this->load->library('pdf');
 
 	}
 
@@ -213,5 +214,172 @@ class C_zakat extends CI_Controller{
 		$data['profil'] = $profil;
 		$this->load->view('v_admin',$data);
 	}
+
+	// Mencetak data zakat page user
+	function print_user_zakat(){
+        $pdf = new FPDF('l','mm','A5');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string
+		$pdf->Cell(190,7,'DATA ZAKAT',0,1,'C');
+        // // Memberikan space kebawah agar tidak terlalu rapat
+        $pdf->Cell(30,15,'',0,1);
+        $pdf->SetFont('Arial','B',8);
+        $pdf->Cell(7,6,'No',1,0,'C');
+        $pdf->Cell(29,6,'NOMINAL GAJI',1,0,'C');
+        $pdf->Cell(29,6,'NOMINAL ZAKAT',1,0,'C');
+        $pdf->Cell(25,6,'TANGGAL INPUT',1,0,'C');
+        $pdf->Cell(26,6,'TANGGAL BAYAR',1,0,'C');
+        $pdf->Cell(33,6,'TANGGAL VERIFIKASI',1,0,'C');
+        $pdf->Cell(41,6,'STATUS',1,1,'C');
+        $pdf->SetFont('Arial','',8);
+        $uname = $_SESSION['username'];
+		$zakat = $this->m_zakat->get_list_data($uname)->result();
+		$no = 1;
+        foreach ($zakat as $row){
+            $pdf->Cell(7,6,$no,1,0,'C');
+            $pdf->Cell(29,6,"Rp. " . number_format($row->nominal_gaji,2,',','.'),1,0);
+			$pdf->Cell(29,6,"Rp. " . number_format($row->nominal_zakat,2,',','.'),1,0);
+			$pdf->Cell(25,6,$row->tanggal_input,1,0,'C');
+	        $pdf->Cell(26,6,$row->tanggal_bayar,1,0,'C');
+	        $pdf->Cell(33,6,$row->tanggal_verifikasi,1,0,'C');
+	        if($row->status == 0){
+				$pdf->Cell(41,6,'Belum melakukan pembayaran',1,1);
+			} else if($row->status == 1){
+				$pdf->Cell(41,6,'Belum di Verifikasi',1,1);
+			}                                       
+			else if($row->status == 2) {
+				$pdf->Cell(41,6,'Sudah di Verifikasi',1,1);
+	        }
+	        $no++;
+        }
+        $pdf->Output();
+    }
+
+    // Mencetak data infaq page user
+	function print_user_infaq(){
+        $pdf = new FPDF('l','mm','A5');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string
+		$pdf->Cell(190,7,'DATA INFAQ',0,1,'C');
+        // // Memberikan space kebawah agar tidak terlalu rapat
+        $pdf->Cell(30,15,'',0,1);
+        $pdf->SetFont('Arial','B',8);
+        $pdf->Cell(10,6,'No',1,0,'C');
+        $pdf->Cell(35,6,'NOMINAL INFAQ',1,0,'C');
+        $pdf->Cell(30,6,'TANGGAL INPUT',1,0,'C');
+        $pdf->Cell(30,6,'TANGGAL BAYAR',1,0,'C');
+        $pdf->Cell(35,6,'TANGGAL VERIFIKASI',1,0,'C');
+        $pdf->Cell(50,6,'STATUS',1,1,'C');
+        $pdf->SetFont('Arial','',8);
+        $uname = $_SESSION['username'];
+		$infaq = $this->m_zakat->get_list_data_infaq($uname)->result();
+		$no = 1;
+        foreach ($infaq as $row){
+            $pdf->Cell(10,6,$no,1,0,'C');
+			$pdf->Cell(35,6,"Rp. " . number_format($row->nominal_infaq,2,',','.'),1,0,'L');
+			$pdf->Cell(30,6,$row->tanggal_input,1,0,'C');
+	        $pdf->Cell(30,6,$row->tanggal_bayar,1,0,'C');
+	        $pdf->Cell(35,6,$row->tanggal_verifikasi,1,0,'C');
+	        if($row->status == 0){
+				$pdf->Cell(50,6,'Belum melakukan pembayaran',1,1);
+			} else if($row->status == 1){
+				$pdf->Cell(50,6,'Belum di Verifikasi',1,1);
+			}                                       
+			else if($row->status == 2) {
+				$pdf->Cell(50,6,'Sudah di Verifikasi',1,1);
+	        }
+	        $no++;
+        }
+        $pdf->Output();
+    }
+
+    // Mencetak data zakat page admin
+	function print_admin_zakat(){
+        $pdf = new FPDF('l','mm','A5');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string
+		$pdf->Cell(190,7,'DATA ZAKAT',0,1,'C');
+        // // Memberikan space kebawah agar tidak terlalu rapat
+        $pdf->Cell(30,15,'',0,1);
+        $pdf->SetFont('Arial','B',8);
+        $pdf->Cell(7,6,'No',1,0,'C');
+        $pdf->Cell(29,6,'NOMINAL GAJI',1,0,'C');
+        $pdf->Cell(29,6,'NOMINAL ZAKAT',1,0,'C');
+        $pdf->Cell(25,6,'TANGGAL INPUT',1,0,'C');
+        $pdf->Cell(26,6,'TANGGAL BAYAR',1,0,'C');
+        $pdf->Cell(33,6,'TANGGAL VERIFIKASI',1,0,'C');
+        $pdf->Cell(41,6,'STATUS',1,1,'C');
+        $pdf->SetFont('Arial','',8);
+		$zakat = $this->m_zakat->get_list_data_all()->result();
+		$no = 1;
+        foreach ($zakat as $row){
+            $pdf->Cell(7,6,$no,1,0,'C');
+            $pdf->Cell(29,6,"Rp. " . number_format($row->nominal_gaji,2,',','.'),1,0);
+			$pdf->Cell(29,6,"Rp. " . number_format($row->nominal_zakat,2,',','.'),1,0);
+			$pdf->Cell(25,6,$row->tanggal_input,1,0,'C');
+	        $pdf->Cell(26,6,$row->tanggal_bayar,1,0,'C');
+	        $pdf->Cell(33,6,$row->tanggal_verifikasi,1,0,'C');
+	        if($row->status == 0){
+				$pdf->Cell(41,6,'Belum melakukan pembayaran',1,1);
+			} else if($row->status == 1){
+				$pdf->Cell(41,6,'Belum di Verifikasi',1,1);
+			}                                       
+			else if($row->status == 2) {
+				$pdf->Cell(41,6,'Sudah di Verifikasi',1,1);
+	        }
+	        $no++;
+        }
+        $pdf->Output();
+    }
+
+    // Mencetak data infaq page admin
+	function print_admin_infaq(){
+        $pdf = new FPDF('l','mm','A5');
+        // membuat halaman baru
+        $pdf->AddPage();
+        // setting jenis font yang akan digunakan
+        $pdf->SetFont('Arial','B',16);
+		// mencetak string
+		$pdf->Cell(190,7,'DATA INFAQ',0,1,'C');
+        // // Memberikan space kebawah agar tidak terlalu rapat
+        $pdf->Cell(30,15,'',0,1);
+        $pdf->SetFont('Arial','B',8);
+        // $pdf->SetLeftMargin(5);
+        $pdf->Cell(10,6,'No',1,0,'C');
+        $pdf->Cell(35,6,'NOMINAL INFAQ',1,0,'C');
+        $pdf->Cell(30,6,'TANGGAL INPUT',1,0,'C');
+        $pdf->Cell(30,6,'TANGGAL BAYAR',1,0,'C');
+        $pdf->Cell(35,6,'TANGGAL VERIFIKASI',1,0,'C');
+        $pdf->Cell(50,6,'STATUS',1,1,'C');
+        $pdf->SetFont('Arial','',8);
+		$infaq = $this->m_zakat->get_list_data_all_infaq()->result();
+		$no = 1;
+        foreach ($infaq as $row){
+            $pdf->Cell(10,6,$no,1,0,'C');
+			$pdf->Cell(35,6,"Rp. " . number_format($row->nominal_infaq,2,',','.'),1,0,'L');
+			$pdf->Cell(30,6,$row->tanggal_input,1,0,'C');
+	        $pdf->Cell(30,6,$row->tanggal_bayar,1,0,'C');
+	        $pdf->Cell(35,6,$row->tanggal_verifikasi,1,0,'C');
+	        if($row->status == 0){
+				$pdf->Cell(50,6,'Belum melakukan pembayaran',1,1);
+			} else if($row->status == 1){
+				$pdf->Cell(50,6,'Belum di Verifikasi',1,1);
+			}                                       
+			else if($row->status == 2) {
+				$pdf->Cell(50,6,'Sudah di Verifikasi',1,1);
+	        }
+	        $no++;
+        }
+        $pdf->Output();
+    }
 }
 ?>
