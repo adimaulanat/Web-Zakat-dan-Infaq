@@ -67,7 +67,7 @@
       <!-- Nav Item - Zakat -->
       <li class="nav-item">
         <a class="nav-link" href="../c_zakat/zakatAdmin">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-table"></i>
           <span>Zakat</span></a>
       </li>
 
@@ -77,6 +77,13 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Infaq</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../c_zakat/chart">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

@@ -205,6 +205,11 @@ class C_zakat extends CI_Controller{
 		$this->load->view('v_admin',$data);
 	}
 
+	function chart(){
+		$data['content_view'] = "v_chart.php";
+		$this->load->view('v_admin',$data);
+	}
+
 	// Menampilkan tabel log zakat
 	function disprofil(){
 		$data['content_view'] = "v_profilAdmin.php";
