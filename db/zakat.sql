@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 07:41 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: Apr 23, 2019 at 06:40 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,30 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `zakat`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `akun`
---
-
-CREATE TABLE `akun` (
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `akun`
---
-
-INSERT INTO `akun` (`username`, `password`, `status`, `nama`) VALUES
-('adi', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'adi maulana'),
-('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Admin'),
-('fajarpanca', '6f8de55c789477d5158eb81bdfdd3015', 0, 'fajarpancas'),
-('fajarpancas', 'be963885b1e3bd7bbe1f6f924458589a', 1, 'Fajar Panca'),
-('username', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'user');
 
 -- --------------------------------------------------------
 
@@ -146,12 +124,6 @@ INSERT INTO `zakat` (`id`, `username`, `nominal_gaji`, `nominal_zakat`, `bukti_p
 --
 
 --
--- Indexes for table `akun`
---
-ALTER TABLE `akun`
-  ADD PRIMARY KEY (`username`);
-
---
 -- Indexes for table `artikel`
 --
 ALTER TABLE `artikel`
@@ -178,16 +150,20 @@ ALTER TABLE `zakat`
 --
 ALTER TABLE `artikel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `infaq`
 --
 ALTER TABLE `infaq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `zakat`
 --
 ALTER TABLE `zakat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

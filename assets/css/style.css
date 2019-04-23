@@ -253,3 +253,7 @@ body {
 	width:100%;
 	background: #0069c0;
 }
+
+.unit-title h1 {
+    text-align: center;
+}

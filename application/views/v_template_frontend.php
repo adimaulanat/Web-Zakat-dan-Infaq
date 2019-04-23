@@ -13,6 +13,8 @@
 	<body style="height:100%; width:100%">
     <div id="header" style="position:absolute; top:0px; left:0px; height:50px; right:0px;overflow:hidden;"> 
 		    <ul>
+				<li><?php echo anchor('c_home/index','Zakat dan Infaq') ?></li>
+				<li><?php echo anchor('c_unitUsahaSyariah/index','Unit Usaha Syariah') ?></li>
 		      <?php if($this->session->userdata('status') == "login"){?>
 		      <li style="float: right;"><?php echo anchor('c_akun/logout','LOG OUT') ?></li>
 			  <li><?php echo anchor('c_zakat/display','Zakat') ?></li>

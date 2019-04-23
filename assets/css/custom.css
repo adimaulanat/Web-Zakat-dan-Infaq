@@ -263,3 +263,12 @@ legend{
     color: lightgrey;
     cursor: pointer;
 }
+
+.unit-title h1 {
+    text-align: center;
+}
+
+.foto-unit img{
+    width: 225px;
+    height: 225px;
+}
