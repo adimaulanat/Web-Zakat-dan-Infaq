@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2019 at 01:35 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: Apr 24, 2019 at 01:13 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -101,6 +103,31 @@ INSERT INTO `infaq` (`id`, `username`, `nominal_infaq`, `bukti_pembayaran`, `tan
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unit_usaha_syariah`
+--
+
+CREATE TABLE `unit_usaha_syariah` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `lokasi` varchar(1000) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `produk` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `unit_usaha_syariah`
+--
+
+INSERT INTO `unit_usaha_syariah` (`id`, `nama`, `lokasi`, `foto`, `produk`) VALUES
+(1, 'Koperasi Simpan Pinjam Syariah Artha Prima Lestari', 'Jl. Mohamad Toha No. 355 A Rt. 07 Rw. 05 Kelurahan Ciseureuh Kecamatan Regol Kota Bandung', 'bap.jpg', 'Simpan Pinjam'),
+(2, 'Koperasi Simpan Pinjam dan Pembiayaan Syariah BMT Itqan', 'Jl. Padasuka No. 160 Kelurahan Pasirlayung Kecamatan Cibeunying Kidul Kota Bandung', 'artikelbmtitqan-b-1.jpg', 'Simpan Pinjam'),
+(3, 'Koperasi Simpan Pinjam dan Pembiayaan Syariah Investama', 'Jl. Soekarno Hatta No. 550 Kelurahan Sekejati Kecamatan Buahbatu Kota Bandung', 'mutiara-nusantara-investama.jpg', 'Simpan Pinjam'),
+(4, 'Koperasi Jasa Keuangan Syariah BMT Barrah', 'Jl. Kiara Sari Asri No. 10 Terusan Kiaracondong Kelurahan Margasari Buahbatu Kota Bandung', '-vEMaJRM_400x400.jpg', 'Simpan Pinjam'),
+(5, 'Koperasi Simpan Pinjam dan Pembiyaan Syariah Al-Falah Mandiri Sejahtera', 'Jl. Stasiun Kaiarcondong No. 39 RT.05 RW.01 kelurahan Kebun Jayanti KEcamatan Kiaracondong Kota Bandung', 'RAT-KSPPS-BMT-Al-Falah-Tahun-Buku-2016.jpg', 'Simpan Pinjam dan Pembiayaan Syariah');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `zakat`
 --
 
@@ -160,6 +187,12 @@ ALTER TABLE `infaq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `unit_usaha_syariah`
+--
+ALTER TABLE `unit_usaha_syariah`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `zakat`
 --
 ALTER TABLE `zakat`
@@ -174,16 +207,26 @@ ALTER TABLE `zakat`
 --
 ALTER TABLE `artikel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `infaq`
 --
 ALTER TABLE `infaq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `unit_usaha_syariah`
+--
+ALTER TABLE `unit_usaha_syariah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `zakat`
 --
 ALTER TABLE `zakat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
