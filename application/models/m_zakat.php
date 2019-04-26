@@ -2,19 +2,31 @@
 
 class M_zakat extends CI_Model{
 
-    function data_admin($number,$offset){
+    function data_admin($number,$offset,$search=""){
+        if($search != ''){
+            $this->db->like('username', $search);
+        }
         return $query = $this->db->get('zakat',$number,$offset)->result();     
     }
 
-    function data_user($username,$number,$offset){
+    function data_user($username,$number,$offset,$search=""){
+        if($search != ''){
+            $this->db->like('nama_zakat', $search);
+        }
         return $query = $this->db->get_where('zakat',array('username'=>$username),$number,$offset)->result();     
     }
 
-    function data_admin_infaq($number,$offset){
+    function data_admin_infaq($number,$offset,$search=""){
+        if($search != ''){
+            $this->db->like('username', $search);
+        }
         return $query = $this->db->get('infaq',$number,$offset)->result();     
     }
 
-    function data_user_infaq($username,$number,$offset){
+    function data_user_infaq($username,$number,$offset,$search=""){
+        if($search != ''){
+            $this->db->like('nama_infaq', $search);
+        }
         return $query = $this->db->get_where('infaq',array('username'=>$username),$number,$offset)->result();     
     }
 
@@ -91,11 +103,17 @@ class M_zakat extends CI_Model{
     }
 
  
-   function jumlah_data(){
+   function jumlah_data($search=""){
+        if($search != ''){
+            $this->db->like('username', $search);
+        }
         return $this->db->get('zakat')->num_rows();
     }
 
-    function jumlah_data_infaq(){
+    function jumlah_data_infaq($search=""){
+        if($search != ''){
+            $this->db->like('username', $search);
+        }
         return $this->db->get('infaq')->num_rows();
     }
 
