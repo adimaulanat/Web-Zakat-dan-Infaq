@@ -4,6 +4,7 @@
       return $hasil_rupiah;
       
       } ?>
+      
       <br>
       <h1 style="font-size: 18px;">Data Zakat</h1>
       <hr class="my-2">
@@ -11,6 +12,7 @@
       <table class="table table-bordered table-striped">
         <tr style="font-size: 14px;">
           <th>No</th>
+          <th>Username</th>
           <th>Nama Zakat</th>
           <th>Nominal Gaji</th>
           <th>Nominal Zakat</th>
@@ -28,6 +30,7 @@
         <tr style="font-size: 12px;">
           <?php $page = $_SESSION['page'] + $no; ?>
           <td><?php echo $page; ?></td>
+          <td><?php echo $row->username; ?></td>
           <td><?php echo $row->nama_zakat; ?></td>
           <td><?php echo rupiah($row->nominal_gaji); ?></td>
           <td><?php echo rupiah($row->nominal_zakat); ?></td>
