@@ -64,6 +64,8 @@
 					<div class="modal-body mx-3">
 							<label>Nama</label>
 							<input required="true" type="text" name="nama" class="form-control">
+							<label>Email</label>
+							<input required="true" type="text" name="email" class="form-control">
 							<label>Username</label>
 							<input required="true" type="text" name="username" class="form-control">
 							<label>Password</label>

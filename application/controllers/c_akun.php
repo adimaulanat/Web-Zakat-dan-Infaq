@@ -19,6 +19,7 @@ class c_akun extends CI_Controller{
 		}
         $data = array(
 			'nama' => $this->input->post('nama'),
+			'email' => $this->input->post('email'),
 			'username' => $this->input->post('username'),
 			'password' => md5($this->input->post('password')),
 			'status' => $akun,
@@ -36,6 +37,7 @@ class c_akun extends CI_Controller{
 		if($cek){
 			$data_session = array(
 				'nama' => $cek->nama,
+				'email' => $cek->email,
 				'username' => $cek->username,
 				'jenis' => $cek->status,
 				'status' => "login",

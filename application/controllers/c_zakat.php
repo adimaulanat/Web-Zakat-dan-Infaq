@@ -16,14 +16,12 @@ class C_zakat extends CI_Controller{
         $config['base_url'] = base_url().'index.php/C_zakat/display/';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 5;
-	    $config['prev_link'] = '&nbsp;Previous&nbsp;|&nbsp;';
-	    $config['next_link'] = '&nbsp;|&nbsp;Next&nbsp;';
         $from = $this->uri->segment(3);
         $this->pagination->initialize($config);     
         $data['admin'] = $this->m_zakat->data_admin($config['per_page'],$from);
         $data['user'] = $this->m_zakat->data_user($_SESSION['username'],$config['per_page'],$from);
         $data['content_view'] = "v_zakat.php";
-        if($this->uri->segment(3)){
+        if($this->uri->segment(3) != null){
 		$_SESSION['page'] = ($this->uri->segment(3)) ;
 		}
 		else{
@@ -100,8 +98,9 @@ class C_zakat extends CI_Controller{
 	function insert(){
 		$vusername = $_SESSION['username'];
 		$vnominal_gaji = $this->input->post('nominal_gaji');
+		$vnama_zakat = $this->input->post('nama_zakat');
 
-		$this->m_zakat->insert($vusername, $vnominal_gaji);
+		$this->m_zakat->insert($vusername, $vnominal_gaji, $vnama_zakat);
 		redirect('C_zakat/display');
 	}
  
@@ -136,8 +135,9 @@ class C_zakat extends CI_Controller{
 	function insert_infaq(){
 		$vusername = $_SESSION['username'];
 		$vnominal_infaq = $this->input->post('nominal_infaq');
+		$vnama_infaq = $this->input->post('nama_infaq');
 
-		$this->m_zakat->insert_infaq($vusername, $vnominal_infaq);
+		$this->m_zakat->insert_infaq($vusername, $vnominal_infaq, $vnama_infaq);
 		redirect('C_zakat/infaq_display');
 	}
 		
@@ -161,7 +161,7 @@ class C_zakat extends CI_Controller{
 		$this->load->database();
         $jumlah_data = $this->m_zakat->jumlah_data();
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'index.php/C_zakat/zakatAdmin/';
+        $config['base_url'] = base_url().'index.php/C_zakat/zakatAdmin';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 5;
 	    $config['prev_link'] = '&nbsp;&nbsp;Previous&nbsp;';
@@ -185,7 +185,7 @@ class C_zakat extends CI_Controller{
 		$this->load->database();
         $jumlah_data = $this->m_zakat->jumlah_data_infaq();
         $this->load->library('pagination');
-        $config['base_url'] = base_url().'index.php/C_zakat/infaqAdmin/';
+        $config['base_url'] = base_url().'index.php/C_zakat/infaqAdmin';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 5;
 	    $config['prev_link'] = '&nbsp;&nbsp;Previous&nbsp;';
@@ -386,5 +386,10 @@ class C_zakat extends CI_Controller{
         }
         $pdf->Output();
     }
+
+	function edit_profil(){
+		$data['content_view'] = "v_editprofil.php";
+		$this->load->view('v_admin',$data);
+	}
 }
 ?>

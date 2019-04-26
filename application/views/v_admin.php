@@ -63,8 +63,29 @@
         Interface
       </div>
       <br>
+      <?php if($this->uri->segment(3)){ ?>
+        <!-- Nav Item - Zakat -->
+      <li class="nav-item">
+        <a class="nav-link" href="../../c_zakat/zakatAdmin">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Zakat</span></a>
+      </li>
 
-      <!-- Nav Item - Zakat -->
+      <!-- Nav Item - Infaq -->
+      <li class="nav-item">
+        <a class="nav-link" href="../../c_zakat/infaqAdmin">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Infaq</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../../c_zakat/chart">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li>
+
+      <?php } else{ ?>
+        <!-- Nav Item - Zakat -->
       <li class="nav-item">
         <a class="nav-link" href="../c_zakat/zakatAdmin">
           <i class="fas fa-fw fa-table"></i>
@@ -84,6 +105,8 @@
           <span>Charts</span></a>
       </li>
 
+      <?php } ?>
+      
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -173,13 +196,22 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+        <?php if($content_view == "v_zakatAdmin.php"){
+          ?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="../c_zakat/print_admin_zakat" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a>
           </div>
-
+          <?php } ?>
           <!-- Content Row -->
+          <?php if($content_view == "v_infaqAdmin.php"){ ?>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <a href="../c_zakat/print_admin_infaq" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a>
+          </div>
+          <?php } ?>
+
           <div class="row">
               <div class="container custom-body">
                 <?php $this->load->view($content_view) ?>

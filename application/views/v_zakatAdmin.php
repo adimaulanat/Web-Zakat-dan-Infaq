@@ -11,6 +11,7 @@
       <table class="table table-bordered table-striped">
         <tr style="font-size: 14px;">
           <th>No</th>
+          <th>Nama Zakat</th>
           <th>Nominal Gaji</th>
           <th>Nominal Zakat</th>
           <th>Tanggal Input</th>
@@ -27,6 +28,7 @@
         <tr style="font-size: 12px;">
           <?php $page = $_SESSION['page'] + $no; ?>
           <td><?php echo $page; ?></td>
+          <td><?php echo $row->nama_zakat; ?></td>
           <td><?php echo rupiah($row->nominal_gaji); ?></td>
           <td><?php echo rupiah($row->nominal_zakat); ?></td>
           <td><?php echo $row->tanggal_input; ?></td>
@@ -61,3 +63,4 @@
 <center><?php 
 echo $this->pagination->create_links();
 ?></center>
+

@@ -19,6 +19,7 @@
 	<table class="table table-bordered table-striped">
 		<tr style="font-size: 14px;">
 			<th>No</th>
+			<th>Nama Infaq</th>
 			<th>Nominal Infaq</th>
 			<th>Tanggal Input</th>
 			<th>Tanggal Bayar</th>
@@ -33,6 +34,7 @@
 		<tr style="font-size: 12px;">
 			<?php $page = $_SESSION['page'] + $no; ?>
 			<td><?php echo $page; ?></td>
+			<td><?php echo $row->nama_infaq; ?></td>
 			<td><?php echo rupiah($row->nominal_infaq); ?></td>
 			<td><?php echo $row->tanggal_input; ?></td>
 			<td><?php echo $row->tanggal_bayar; ?></td>
@@ -63,8 +65,8 @@
 			}?>
 
 	<a data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
-
-	<button type="button" class="btn btn-primary btn-sm"><?php echo anchor('c_zakat/print_user_infaq','Download Pdf',array('class' => 'nav-link')) ?></button>
+	<a style="float:right;" href="../../c_zakat/print_user_infaq"><button type="button" class="btn btn-danger btn-sm">Download PDF</button></a>
+	
 	<br>
 	<br>
 	</table>
@@ -85,6 +87,10 @@
 						</button>
 					</div>
 					<div class="form-group">
+						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nama Infaq :</label>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input type="text" class="form-control" id="nama_infaq1" placeholder="Masukkan Nama Infaq" name="nama_infaq">
+						</div>
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Infaq :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="number" class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
@@ -114,6 +120,7 @@
 					echo form_open_multipart('C_zakat/insert_infaq',array('class' => 'form-horizontal Edit')); 
 					?>
 						<input type="hidden"  class="form-control" id="nominal_infaq" name="nominal_infaq">
+						<input type="hidden"  class="form-control" id="nama_infaq" name="nama_infaq">
 						<div class="modal-footer d-flex justify-content-center">
 							<button type="submit" class="btn btn-primary">Ok</button>
 						</div>
@@ -157,6 +164,7 @@
 <script>
 	$('#confBtn').click(function() {
 		$('#nominal_infaq').val($('#nominal_infaq1').val());
+		$('#nama_infaq').val($('#nama_infaq1').val());
 	});
 
 	$('#UpPembayaran').click(function(){
