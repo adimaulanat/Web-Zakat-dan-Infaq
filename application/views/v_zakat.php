@@ -1,3 +1,11 @@
+<?php
+if(!empty($this->session->userdata('filter'))){
+  $filter = $this->session->filter;
+}else{
+  $filter = '';
+}
+?>
+
 <div>
 	<?php function rupiah($angka){
 	
@@ -15,6 +23,25 @@
 		</h3>
 		<br>
 	</center>
+
+	<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="<?php echo base_url().'index.php/c_zakat/display'?>">
+	    <div class="input-group">
+	      	<input type="search" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" name="judul" value="<?php echo $filter;?>">
+	      	<div class="input-group-append">
+	        	<button class="btn btn-primary" type="submit" name="submit">
+	          		<i class="fas fa-search fa-sm"></i>
+	        	</button>
+	        	<?php 
+			        $attrs = array(
+			          'class' => 'btn btn-primary',
+			          'role' => 'button',
+			          'aria-pressed' => "true"
+			        );
+			        echo anchor('C_zakat/user_unset_session_search','Clear Search',$attrs);
+	        	?>
+	      	</div>
+	    </div>
+  	</form>
 
 	<table class="table table-bordered table-striped">
 		<tr style="font-size: 14px;">
