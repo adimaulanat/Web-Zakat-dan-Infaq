@@ -1,4 +1,7 @@
 <head>
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/_variables.scss" rel="stylesheet">
@@ -16,9 +19,10 @@
 				<li><?php echo anchor('c_home/index','Zakat dan Infaq') ?></li>
 				<li><?php echo anchor('c_unitUsahaSyariah/index','Unit Usaha Syariah') ?></li>
 		      <?php if($this->session->userdata('status') == "login"){?>
-		      <li style="float: right;"><?php echo anchor('c_akun/logout','LOG OUT') ?></li>
+		      <li style="float: right;"><?php echo anchor('c_akun/logout','<i class="fas fa-sign-out-alt"></i> &nbsp;Log Out') ?></li>
 			  <li><?php echo anchor('c_zakat/display','Zakat') ?></li>
 			  <li><?php echo anchor('c_zakat/infaq_display','Infaq') ?></li>
+			  <li style="float: right;"><?php echo anchor('c_zakat/disprofiluser','<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profil') ?></li>
 <?php			} else{ ?>
 		      <li style="float: right;"><a data-toggle="modal" href="#modalRegisterForm">Daftar</a></li>
 			  <li style="float: right;"><a data-toggle="modal" href="#modalLoginForm">Log In</a></li>

@@ -121,5 +121,11 @@ class M_zakat extends CI_Model{
 		$query = $this->db->get_where('akun', array('username' => $id))->row();
 		return $query;
     }
+
+    function update_data_profil($where,$data,$table){
+		$this->db->where($where);
+		return $this->db->update($table,$data);
+		
+	}
 }
 ?>

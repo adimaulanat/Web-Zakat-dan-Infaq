@@ -26,19 +26,13 @@ if(!empty($this->session->userdata('filter'))){
 
 	<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="get" action="<?php echo base_url().'index.php/c_zakat/infaq_display'?>">
 	    <div class="input-group">
-	      	<input type="search" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" name="judul" value="<?php echo $filter;?>">
+	      	<input type="search" style="height:30px;" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" name="judul" value="<?php echo $filter;?>">
 	      	<div class="input-group-append">
-	        	<button class="btn btn-primary" type="submit" name="submit">
+	        	<button class="btn btn-primary" style="margin-right:10px; height:30px;" type="submit" name="submit">
 	          		<i class="fas fa-search fa-sm"></i>
 	        	</button>
-	        	<?php 
-			        $attrs = array(
-			          'class' => 'btn btn-primary',
-			          'role' => 'button',
-			          'aria-pressed' => "true"
-			        );
-			        echo anchor('C_zakat/user_unset_session_search_infaq','Clear Search',$attrs);
-	        	?>
+				<a style="float:right; height" href="../c_zakat/user_unset_session_search_infaq"><button type="button" class="btn btn-danger btn-sm">Clear Search</button></a>
+	
 	      	</div>
 	    </div>
   	</form>
@@ -91,8 +85,8 @@ if(!empty($this->session->userdata('filter'))){
 		$no++;
 			}?>
 
-	<a data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-primary btn-sm">(+) Tambah</button></a>
-	<a style="float:right;" href="../../c_zakat/print_user_infaq"><button type="button" class="btn btn-danger btn-sm">Download PDF</button></a>
+	<a style="float:right;" href="../../c_zakat/print_user_infaq"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download PDF</button></a>
+	<a style="float:right; margin-right:10px;" data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah</button></a>
 	
 	<br>
 	<br>

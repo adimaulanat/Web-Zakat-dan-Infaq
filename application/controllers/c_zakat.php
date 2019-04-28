@@ -498,7 +498,83 @@ class C_zakat extends CI_Controller{
 
 	function edit_profil(){
 		$data['content_view'] = "v_editprofil.php";
+		$this->load->model('m_zakat');
+		$uname = $_SESSION['username'];
+		$profil = $this->m_zakat->get_profil($uname);
+		$data['profil'] = $profil;
 		$this->load->view('v_admin',$data);
+	}
+
+	function edit_profil_to_db(){
+		$nama = $this->input->post('nama');
+		$password = $this->input->post('password');
+		$data = array();
+
+		if(!$password){
+			$data = $data + array(
+				'nama' => $nama,
+			);
+		}else if($password){
+			$data = $data + array(
+				'nama' => $nama,
+				'password' => md5($password)
+			);
+		}
+
+		$where = array(
+			'username' => $_SESSION['username']
+		);
+		
+		if($this->m_zakat->update_data_profil($where,$data,'akun')){
+			redirect(site_url("c_zakat/disprofil"));
+		}else{
+			$this->db->error();
+		}
+	}
+
+	function disprofiluser(){
+		$data['content_view'] = "v_profilUser.php";
+		$this->load->model('m_zakat');
+		$uname = $_SESSION['username'];
+		$profil = $this->m_zakat->get_profil($uname);
+		$data['profil'] = $profil;
+		$this->load->view('v_template_frontend',$data);
+	}
+
+	function edit_profil_user(){
+		$data['content_view'] = "v_editprofilUser.php";
+		$this->load->model('m_zakat');
+		$uname = $_SESSION['username'];
+		$profil = $this->m_zakat->get_profil($uname);
+		$data['profil'] = $profil;
+		$this->load->view('v_template_frontend',$data);
+	}
+
+	function edit_profil_to_db_user(){
+		$nama = $this->input->post('nama');
+		$password = $this->input->post('password');
+		$data = array();
+
+		if(!$password){
+			$data = $data + array(
+				'nama' => $nama,
+			);
+		}else if($password){
+			$data = $data + array(
+				'nama' => $nama,
+				'password' => md5($password)
+			);
+		}
+
+		$where = array(
+			'username' => $_SESSION['username']
+		);
+		
+		if($this->m_zakat->update_data_profil($where,$data,'akun')){
+			redirect(site_url("c_zakat/disprofiluser"));
+		}else{
+			$this->db->error();
+		}
 	}
 }
 ?>

@@ -1,16 +1,22 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+if(!empty($this->session->userdata('filter'))){
+  $filter = $this->session->filter;
+}else{
+  $filter = '';
+}
 ?>
-<title>Profil</title>
 
-<div class="row berita-content" style="background:white; padding:30px;">
-    
-        <div class="berita-text">
-            <p><b>
-			Data Profil
-	</b>	</p>
-    <hr class="my-2">
-           <table style="font-size:16px;">
+<div>
+	<?php function rupiah($angka){
+	
+	$hasil_rupiah = "Rp. " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+ 
+	} ?>
+	<br>
+	<h1 style="font-size: 16px;">Data Profil</h1>
+	<hr class="my-2"><br><br>
+	<table style="font-size:16px;">
 		<tr>
 			<td>Nama Lengkap</td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -28,9 +34,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</tr>
         </table>
         <br>
-         <a href="../c_zakat/edit_profil"><button type="button" class="btn btn-primary btn-sm">Edit Profil</button></a>
+         <a href="../c_zakat/edit_profil_user"><button type="button" class="btn btn-primary btn-sm">Edit Profil</button></a>
 	
             <br><br>
-        </div>
-        
+
+	
+
+	
+	</div>
 </div>
+

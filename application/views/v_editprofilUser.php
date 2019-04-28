@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			Data Profil
 	</b>	</p>
     <hr class="my-2">
-        <?php echo form_open("c_zakat/edit_profil_to_db"); ?>
+        <?php echo form_open("c_zakat/edit_profil_to_db_user"); ?>
       <table cellpadding="8">
         <tr>
           <td>Nama Lengkap</td>
@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
       <hr>
       <button type="submit" class="btn btn-primary">Simpan</button>
-      <a href="../c_zakat/disprofil"><input type="button" class="btn btn-danger" value="Batal"></a>
+      <a href="../c_zakat/disprofilUser"><input type="button" class="btn btn-danger" value="Batal"></a>
     <?php echo form_close(); ?>
         </div>
         
