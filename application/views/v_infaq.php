@@ -85,7 +85,7 @@ if(!empty($this->session->userdata('filter'))){
 		$no++;
 			}?>
 
-	<a style="float:right;" href="../../c_zakat/print_user_infaq"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download PDF</button></a>
+	<a style="float:right;" href="../c_zakat/print_user_infaq"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download PDF</button></a>
 	<a style="float:right; margin-right:10px;" data-toggle="modal" href="#modalAddInfaq"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah</button></a>
 	
 	<br>
