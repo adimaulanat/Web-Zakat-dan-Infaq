@@ -14,7 +14,10 @@ if(!empty($this->session->userdata('filter'))){
  
 	} ?>
 	<br>
-	<h1 style="font-size: 15px;">Selamat Datang, <?php echo $_SESSION['nama']; ?></h1>
+	<h1 style="font-size: 15px;">Selamat Datang, <?php echo $_SESSION['nama']; ?> <a style="float:right;" href="../c_zakat/disprofil">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a></h1>
 	<hr class="my-2">
 	<center>
 		<br>

@@ -9,7 +9,7 @@
         <h1 style="font-size: 18px;">Data Infaq</h1>
         <hr class="my-2">
         
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" style="width:auto">
           <tr style="font-size: 14px;">
             <th>No</th>
             <th>Username</th>

@@ -251,7 +251,7 @@ if(!empty($this->session->userdata('filter'))){
           </div>
           <?php } ?>
 
-          <div class="row">
+          <div class="row" style="overflow-x: auto">
               <div class="container custom-body">
                 <?php $this->load->view($content_view) ?>
               </div>

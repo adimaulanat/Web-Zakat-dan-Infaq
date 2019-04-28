@@ -93,7 +93,6 @@
 					<div class="modal-header text-center">
 						<h4 class="modal-title w-100 font-weight-bold">Log In</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<?php echo anchor('c_unitUsahaSyariah/index','Unit Usaha Syariah') ?>
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
