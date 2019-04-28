@@ -350,7 +350,7 @@ class C_zakat extends CI_Controller{
         $pdf->Cell(41,6,'STATUS',1,1,'C');
         $pdf->SetFont('Arial','',8);
         $uname = $_SESSION['username'];
-		$zakat = $this->m_zakat->get_list_data($uname)->result();
+		$zakat = $this->m_zakat->get_list_data_print($uname)->result();
 		$no = 1;
         foreach ($zakat as $row){
             $pdf->Cell(7,6,$no,1,0,'C');
@@ -392,7 +392,7 @@ class C_zakat extends CI_Controller{
         $pdf->Cell(50,6,'STATUS',1,1,'C');
         $pdf->SetFont('Arial','',8);
         $uname = $_SESSION['username'];
-		$infaq = $this->m_zakat->get_list_data_infaq($uname)->result();
+		$infaq = $this->m_zakat->get_list_data_infaq_print($uname)->result();
 		$no = 1;
         foreach ($infaq as $row){
             $pdf->Cell(10,6,$no,1,0,'C');
