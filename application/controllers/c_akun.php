@@ -61,6 +61,11 @@ class c_akun extends CI_Controller{
 		}
 	}	
 
+	function hapus_data(){
+		$this->session->sess_destroy();
+		redirect(site_url("c_home/index"));
+	}
+
 	function logout(){
 		$this->session->sess_destroy();
 		redirect(base_url('/'));
