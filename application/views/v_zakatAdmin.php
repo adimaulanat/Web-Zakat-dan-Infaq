@@ -19,6 +19,7 @@
           <th>Tanggal Input</th>
           <th>Tanggal Bayar</th>
           <th>Tanggal Verifikasi</th>
+          <th>Slip Gaji</th>
           <th>Bukti Pembayaran</th>
           <th>Status</th>
           <th>Verifikasi</th>
@@ -37,7 +38,20 @@
           <td><?php echo $row->tanggal_input; ?></td>
           <td><?php echo $row->tanggal_bayar; ?></td>
           <td><?php echo $row->tanggal_verifikasi; ?></td>
-          <td>foto pembayaran</td>
+          <td>
+              <a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>');">
+              <img src="<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>" width="150px" height="150px">
+            </td>
+          <td><?php 
+              if($row->status != 0){?>
+                <a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>');">
+				        <img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
+              <?php
+              }
+              if($row->status == 0){
+                echo "Belum melakukan pembayaran";
+              } 
+            ?></td> 
           <td><?php if($row->status == 0){
           echo "Belum melakukan pembayaran";
           } else if($row->status == 1){
@@ -67,3 +81,9 @@
 echo $this->pagination->create_links();
 ?></center>
 
+<script>
+  function newPopup(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
+	}
+</script>

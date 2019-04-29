@@ -90,12 +90,20 @@ class M_zakat extends CI_Model{
     }
 
     // menginputkan/menambahkan zakat baru
-    function insert($vusername, $vnominal_gaji, $vnama_zakat){
+    function insert($vusername, $vnominal_gaji, $vnama_zakat, $vfoto){
 
         $vnominal_zakat = $vnominal_gaji * 2.5 / 100;
         $vtanggal_input=date("Y-m-d");
-        $query = $this->db->query("INSERT INTO zakat (id, username, nama_zakat, nominal_gaji, nominal_zakat, bukti_pembayaran, tanggal_input, tanggal_bayar, tanggal_verifikasi, status) VALUES (NULL, '$vusername', '$vnama_zakat', '$vnominal_gaji', '$vnominal_zakat', '', '$vtanggal_input', '', '', '0');");
+        $query = $this->db->query("INSERT INTO zakat (id, username, nama_zakat, nominal_gaji, nominal_zakat, slip_gaji, bukti_pembayaran, tanggal_input, tanggal_bayar, tanggal_verifikasi, status) VALUES (NULL, '$vusername', '$vnama_zakat', '$vnominal_gaji', '$vnominal_zakat', '$vfoto', '', '$vtanggal_input', '', '', '0');");
     }
+
+    function input_data_zakat($data,$table){
+		$this->db->insert($table,$data);
+	}
+
+    function input_data_infaq($data,$table){
+		$this->db->insert($table,$data);
+	} 
 
     // menginputkan/menambahkan zakat baru
     function insert_infaq($vusername, $vnominal_infaq, $vnama_infaq){

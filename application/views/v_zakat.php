@@ -37,8 +37,13 @@ if(!empty($this->session->userdata('filter'))){
 	      	</div>
 	    </div>
   	</form>
+	  <a style="float:right;" href="../c_zakat/print_user_zakat"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download PDF</button></a>
+	<a style="float:right; margin-right:10px;" data-toggle="modal" href="#modalAddZakat"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah</button></a>
+	<br>
 
-	<table class="table table-bordered table-striped">
+	<br>	
+	<div style="overflow-x: auto">
+	<table class="table table-bordered table-striped" style="width:auto">
 		<tr style="font-size: 14px;">
 			<th>No</th>
 			<th>Nama Zakat</th>
@@ -47,6 +52,7 @@ if(!empty($this->session->userdata('filter'))){
 			<th>Tanggal Input</th>
 			<th>Tanggal Bayar</th>
 			<th>Tanggal Verifikasi</th>
+			<th>Slip Gaji</th>
 			<th>Bukti Pembayaran</th>
 			<th>Status</th>
 			<th>Download Transaksi</th>
@@ -68,13 +74,18 @@ if(!empty($this->session->userdata('filter'))){
 			<td><?php echo $row->tanggal_bayar; ?></td>
 			<td><?php echo $row->tanggal_verifikasi; ?></td>
 			<td>
+				<a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>');">
+				<img src="<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>" width="150px" height="150px">
+			</td>
+			<td>
 				<?php 
 					if($row->status != 0){?>
+						<a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>');">
 						<img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
 					<?php
 					}
 					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
+						<button class="btn btn-primary btn-sm UpPembayaran" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
 					} 
 				?>
 			</td>
@@ -97,15 +108,12 @@ if(!empty($this->session->userdata('filter'))){
 		$no++;
 			}?>
 
-	<a style="float:right;" href="../c_zakat/print_user_zakat"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download PDF</button></a>
-	<a style="float:right; margin-right:10px;" data-toggle="modal" href="#modalAddZakat"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Tambah</button></a>
-	<br>
-
-	<br>	
+		
 
 	
 
 	</table>
+	</div>
 	</div>
 </div>
 <center><?php 
@@ -122,7 +130,9 @@ if(!empty($this->session->userdata('filter'))){
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="form-group">
+					<?php
+					echo form_open_multipart('C_zakat/insert',array('class' => 'form-horizontal Edit')); 
+					?><div class="form-group">
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nama Zakat :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="text"  class="form-control" id="nama_zakat1" placeholder="Masukkan Nama Zakat" name="nama_zakat">
@@ -131,38 +141,35 @@ if(!empty($this->session->userdata('filter'))){
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="number"  class="form-control" id="nominal_gaji1" placeholder="Masukkan Gaji" name="nominal_gaji">
 						</div>
+						 <label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12" for="exampleInputFile">Upload Slip Gaji</label>
+               			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input name="slip_gaji" type="file" class="form-control-file" id="slip_gaji1" aria-describedby="fileHelp">
+						</div>
 					</div>
 					<div class="modal-footer d-flex justify-content-center">
 						<!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#infoRek">Tambah</button> -->
-						<input type="button" name="btn" value="Tambah" id="confBtn" data-toggle="modal" data-target="#infoRek" class="btn btn-primary" />
+						<button type="submit" onclick="openInfoRek()" class="btn btn-primary">Tambah</button>
 					</div>
+					<?php
+						echo form_close();
+					?>	
 				</div>
 			</div>
 		</div>
 
-		<div class="modal fade" id="infoRek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="infoRek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Informasi Pembayaran</h4>
-						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span> -->
+						<h6 class="modal-title w-100">Informasi Pembayaran</h6>
+						<button type="button" onclick="location.href='http://localhost/Web-Zakat-dan-Infaq/index.php/c_zakat/hapus_data'" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 						</button>
 					</div>
 					<div class="modal-header text-center">
 						<p>Pembayaran Zakat bisa melalui No. Rekening : <b>8537 9348 3489</b></p>
 					</div>
-					<?php
-					echo form_open_multipart('C_zakat/insert',array('class' => 'form-horizontal Edit')); 
-					?>
-						<input type="hidden"  class="form-control" id="nominal_gaji" name="nominal_gaji">
-						<input type="hidden"  class="form-control" id="nama_zakat" name="nama_zakat">
-						<div class="modal-footer d-flex justify-content-center">
-							<button type="submit" class="btn btn-primary">Ok</button>
-						</div>
-					<?php
-						echo form_close();
-					?>	
 				</div>
 			</div>
 		</div>
@@ -197,12 +204,28 @@ if(!empty($this->session->userdata('filter'))){
 		</div>
 		
 <script>
+	<?php
+		if ($_SESSION['infoRek']=="y"){
+	?>
+	$(window).on('load',function(){
+        $('#infoRek').modal('show');
+    });
+	<?php
+		}
+	?>
+
+	function newPopup(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
+	}
+
 	$('#confBtn').click(function() {
 		$('#nominal_gaji').val($('#nominal_gaji1').val());
 		$('#nama_zakat').val($('#nama_zakat1').val());
+		$('#slip_gaji').val($('#slip_gaji1').val());
 	});
 
-	$('#UpPembayaran').click(function(){
+	$('.UpPembayaran').click(function(){
     // $.ajax(
     // {
     //   url: '<?php //echo base_url('Product/get_by_id') ?>',
@@ -220,4 +243,6 @@ if(!empty($this->session->userdata('filter'))){
 
     $('#modalUpPembayaran').modal('show');
   });
+	
+  
 </script>

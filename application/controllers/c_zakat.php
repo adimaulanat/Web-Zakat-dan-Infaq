@@ -8,10 +8,17 @@ class C_zakat extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->library('session');
 
+		if($this->session->userdata('status') != "login"){
+			redirect(site_url("c_home/index"));
+		}
+
 	}
 
 	// Menampilkan tabel log zakat
 	function display(){
+		if($this->session->userdata('jenis') == 1){
+			redirect(site_url("c_zakat/zakatAdmin"));
+		}
 		$this->load->database();
  	    if($this->input->get('submit')!==NULL){
 			$this->session->set_userdata('filter', $this->input->get('judul'));
@@ -135,12 +142,62 @@ class C_zakat extends CI_Controller{
 		$vusername = $_SESSION['username'];
 		$vnominal_gaji = $this->input->post('nominal_gaji');
 		$vnama_zakat = $this->input->post('nama_zakat');
+		$vnominal_zakat = $vnominal_gaji * 2.5 / 100;
+		$vtanggal_input=date("Y-m-d");
+		//Image harus 16:9
+		$config['upload_path']          = './assets/img/';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 500;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+		
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('slip_gaji');
+			
+		$file = $this->upload->data();
 
-		$this->m_zakat->insert($vusername, $vnominal_gaji, $vnama_zakat);
+		$data = array(
+			'username' => $vusername,
+			'nama_zakat' => $vnama_zakat,
+			'nominal_gaji' => $vnominal_gaji,
+			'nominal_zakat' => $vnominal_zakat,
+			'slip_gaji' => $this->upload->data('file_name'),
+			'bukti_pembayaran' => '',
+			'tanggal_input' => $vtanggal_input,
+			'tanggal_bayar' => '',
+			'tanggal_verifikasi' => '',
+			'status' => '0'
+		);
+
+		$this->m_zakat->input_data_zakat($data,'zakat');
+		$data_session = array(
+				'infoRek' => "y",
+			);
+		$this->session->set_userdata($data_session);
+
 		redirect('C_zakat/display');
+	}
+
+	function hapus_data(){
+		$data_session = array(
+				'infoRek' => "n",
+			);
+		$this->session->set_userdata($data_session);
+		redirect('C_zakat/display');
+	}
+
+	function hapus_data_infaq(){
+		$data_session = array(
+				'infoRek' => "n",
+			);
+		$this->session->set_userdata($data_session);
+		redirect('C_zakat/infaq_display');
 	}
  
  	function infaq_display(){
+		 if($this->session->userdata('jenis') == 1){
+			redirect(site_url("c_zakat/zakatAdmin"));
+		}
  		$this->load->database();
  	    if($this->input->get('submit')!==NULL){
 			$this->session->set_userdata('filter', $this->input->get('judul'));
@@ -203,10 +260,39 @@ class C_zakat extends CI_Controller{
 
 	function insert_infaq(){
 		$vusername = $_SESSION['username'];
-		$vnominal_infaq = $this->input->post('nominal_infaq');
 		$vnama_infaq = $this->input->post('nama_infaq');
+		$vnominal_infaq = $this->input->post('nominal_infaq');
+		$vtanggal_input=date("Y-m-d");
+		//Image harus 16:9
+		$config['upload_path']          = './assets/img/';
+		$config['allowed_types']        = 'jpg|png|jpeg';
+		$config['max_size']             = 500;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 768;
+		
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('slip_gaji');
+			
+		$file = $this->upload->data();
 
-		$this->m_zakat->insert_infaq($vusername, $vnominal_infaq, $vnama_infaq);
+		$data = array(
+			'username' => $vusername,
+			'nama_infaq' => $vnama_infaq,
+			'nominal_infaq' => $vnominal_infaq,
+			'slip_gaji' => $this->upload->data('file_name'),
+			'bukti_pembayaran' => '',
+			'tanggal_input' => $vtanggal_input,
+			'tanggal_bayar' => '',
+			'tanggal_verifikasi' => '',
+			'status' => '0'
+		);
+
+		$this->m_zakat->input_data_infaq($data,'infaq');
+		$data_session = array(
+				'infoRek' => "y",
+			);
+		$this->session->set_userdata($data_session);
+
 		redirect('C_zakat/infaq_display');
 	}
 		
@@ -227,6 +313,9 @@ class C_zakat extends CI_Controller{
 	}	
 
 	function zakatAdmin(){
+		if($this->session->userdata('jenis') == 0){
+			redirect(site_url("c_zakat/display"));
+		}
 		$this->load->database();
 		// $data['admin'] = $this->m_zakat->get_all_data();
  	    if($this->input->get('submit')!==NULL){
@@ -271,6 +360,9 @@ class C_zakat extends CI_Controller{
 	}
 
 	function infaqAdmin(){
+		if($this->session->userdata('jenis') == 0){
+			redirect(site_url("c_zakat/display"));
+		}
 		$this->load->database();
 		// $data['admin'] = $this->m_zakat->get_all_data();
  	    if($this->input->get('submit')!==NULL){

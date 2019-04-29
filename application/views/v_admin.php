@@ -147,17 +147,10 @@ if(!empty($this->session->userdata('filter'))){
             <div class="input-group">
               <input type="search" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" name="username" value="<?php echo $filter;?>">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit" name="submit">
+                <button class="btn btn-primary" style="margin-right:10px; height:35px;" type="submit" name="submit">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
-                <?php 
-                $attrs = array(
-                  'class' => 'btn btn-primary',
-                  'role' => 'button',
-                  'aria-pressed' => "true"
-                );
-                echo anchor('C_zakat/unset_session_search','Clear Search',$attrs);
-                ?>
+                <a href="../C_zakat/unset_session_search"><button style="margin-right:10px; height:35px;"  type="button" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i>&nbsp;Clear Search</button></a>
               </div>
             </div>
           </form>
@@ -168,17 +161,10 @@ if(!empty($this->session->userdata('filter'))){
             <div class="input-group">
               <input type="search" class="form-control bg-light border-0 small" placeholder="Cari..." aria-label="Search" aria-describedby="basic-addon2" name="username" value="<?php echo $filter;?>">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit" name="submit">
+                <button class="btn btn-primary" style="margin-right:10px; height:35px;" type="submit" name="submit">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
-                <?php 
-                $attrs = array(
-                  'class' => 'btn btn-primary',
-                  'role' => 'button',
-                  'aria-pressed' => "true"
-                );
-                echo anchor('C_zakat/unset_session_search_infaq','Clear Search',$attrs);
-                ?>
+                <a href="../C_zakat/unset_session_search_infaq"><button style="margin-right:10px; height:35px;" type="button" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i>&nbsp; Clear Search</button></a>
               </div>
             </div>
           </form>
@@ -243,7 +229,7 @@ if(!empty($this->session->userdata('filter'))){
             <?php
               echo form_open_multipart('c_zakat/print_admin_zakat');
             ?>
-              <select name="bulan">
+              <select class="selectpicker" name="bulan">
                 <option value="1">Januari</option>
                 <option value="2">Februari</option>
                 <option value="3">Maret</option>
@@ -264,7 +250,7 @@ if(!empty($this->session->userdata('filter'))){
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
               </select>
-              <button type="submit" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
+              <button type="submit" style="height:27px; line-height:10px; font-size:13px;" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
               <!-- <a href="../c_zakat/print_admin_zakat" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a> -->
             <?php
               echo form_close();
@@ -299,7 +285,7 @@ if(!empty($this->session->userdata('filter'))){
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
               </select>
-              <button type="submit" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
+              <button type="submit" style="height:27px; line-height:10px; font-size:13px;" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
               <!-- <a href="../c_zakat/print_admin_infaq" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a> -->
             <?php
               echo form_close();
