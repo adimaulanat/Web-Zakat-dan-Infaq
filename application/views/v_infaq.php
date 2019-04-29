@@ -213,7 +213,8 @@ if(!empty($this->session->userdata('filter'))){
 	function newPopup(url) {
     popupWindow = window.open(
         url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
-	}
+	};
+	
 	$('#confBtn').click(function() {
 		$('#nominal_infaq').val($('#nominal_infaq1').val());
 		$('#nama_infaq').val($('#nama_infaq1').val());
