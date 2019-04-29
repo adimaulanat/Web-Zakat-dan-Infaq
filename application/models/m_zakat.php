@@ -153,17 +153,13 @@ class M_zakat extends CI_Model{
     }
     
     function print_by_month($month, $year){
-        $this->db->where('MONTH(tanggal_input)', $month); // Tambahkan where bulan
-        $this->db->where('YEAR(tanggal_input)', $year); // Tambahkan where tahun
-        
-        return $this->db->get('zakat')->result(); // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
+        $query=$this->db->query("SELECT * FROM zakat WHERE MONTH(tanggal_input) = '$month' AND YEAR(tanggal_input) = '$year' ORDER BY id");
+        return $query;
     }
 
     function print_by_month_infaq($month, $year){
-        $this->db->where('MONTH(tanggal_input)', $month); // Tambahkan where bulan
-        $this->db->where('YEAR(tanggal_input)', $year); // Tambahkan where tahun
-        
-        return $this->db->get('infaq')->result(); // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
+        $query=$this->db->query("SELECT * FROM infaq WHERE MONTH(tanggal_input) = '$month' AND YEAR(tanggal_input) = '$year' ORDER BY id");
+        return $query;
     }
 }
 ?>
