@@ -1,10 +1,10 @@
 <head>
-	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/bootstrap.css" rel="stylesheet">
-	<link href="<?php echo base_url() ?>assets/css/_variables.scss" rel="stylesheet">
+	<!-- <link href="<?php echo base_url() ?>assets/css/_variables.scss" rel="stylesheet"> -->
 	<link href="<?php echo base_url() ?>assets/css/_bootswatch.scss" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/css/custom.css" rel="stylesheet">
 	
@@ -136,14 +136,14 @@
 </body>
 
 <script>
-	var loc = window.location.pathname;
-	var paths = loc.split('/');
-	console.log(paths[4]);
-	if(paths[4].includes("mahasiswa")){
-		document.getElementById("mhs-link").classList.add("active");
-	}else if(paths[4].includes("berita")){
-		document.getElementById("berita-link").classList.add("active");
-	}
+	// var loc = window.location.pathname;
+	// var paths = loc.split('/');
+	// console.log(paths[4]);
+	// if(paths[4].includes("mahasiswa")){
+	// 	document.getElementById("mhs-link").classList.add("active");
+	// }else if(paths[4].includes("berita")){
+	// 	document.getElementById("berita-link").classList.add("active");
+	// }
 
 	// $(document).ready(function(){
 	// 	$('#modalLoginForm').modal('show');

@@ -85,7 +85,7 @@ if(!empty($this->session->userdata('filter'))){
 					<?php
 					}
 					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm UpPembayaran" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
+						<button class="btn btn-primary btn-sm UpPembayaranC" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
 					} 
 				?>
 			</td>
@@ -199,25 +199,27 @@ if(!empty($this->session->userdata('filter'))){
 					</div>
 					<?php
 						echo form_close();
-						?>	
+					?>	
 			</div>
 		</div>
 		
 <script>
 	<?php
-		if ($_SESSION['infoRek']=="y"){
+		if (isset($_SESSION['infoRek'])){
+			if ($_SESSION['infoRek']=="y"){
 	?>
 	$(window).on('load',function(){
         $('#infoRek').modal('show');
-    });
+  });
 	<?php
+			}
 		}
 	?>
 
 	function newPopup(url) {
     popupWindow = window.open(
         url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
-	}
+	};
 
 	$('#confBtn').click(function() {
 		$('#nominal_gaji').val($('#nominal_gaji1').val());
@@ -225,21 +227,8 @@ if(!empty($this->session->userdata('filter'))){
 		$('#slip_gaji').val($('#slip_gaji1').val());
 	});
 
-	$('.UpPembayaran').click(function(){
-    // $.ajax(
-    // {
-    //   url: '<?php //echo base_url('Product/get_by_id') ?>',
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   data: {id:$(this).data('id')},
-    //   success: function(response)
-    //   {
-    //   	 //console.log("test");
-    //      console.log(response);
-    //        $('input[name="ids"]').val($(this).data('id'));
-    //   }
-    //  })
-	$('input[name="ids"]').val($(this).data('id'));
+	$('.UpPembayaranC').click(function(){
+		$('input[name="ids"]').val($(this).data('id'));
 
     $('#modalUpPembayaran').modal('show');
   });

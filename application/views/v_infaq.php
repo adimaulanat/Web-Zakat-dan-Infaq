@@ -73,8 +73,10 @@ if(!empty($this->session->userdata('filter'))){
 						<img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
 					<?php
 					}
-					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm UpPembayaran" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
+						if($row->status == 0){
+					?>
+						<button class="btn btn-primary btn-sm UpPembayaranC" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button>		
+				<?php 
 					} 
 				?>
 			</td>
@@ -132,8 +134,8 @@ if(!empty($this->session->userdata('filter'))){
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="number" class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
 						</div>						
-						 <label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12" for="exampleInputFile">Upload Slip Gaji</label>
-               			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12" for="exampleInputFile">Upload Slip Gaji</label>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input name="slip_gaji" type="file" class="form-control-file" id="slip_gaji1" aria-describedby="fileHelp">
 						</div>
 						<div class="modal-footer d-flex justify-content-center">
@@ -197,12 +199,14 @@ if(!empty($this->session->userdata('filter'))){
 
 <script>
 	<?php
-		if ($_SESSION['infoRek']=="y"){
+		if (isset($_SESSION['infoRek'])){
+			if ($_SESSION['infoRek']=="y"){
 	?>
-	$(window).on('load',function(){
-        $('#infoRek').modal('show');
-    });
+				$(window).on('load',function(){
+						$('#infoRek').modal('show');
+				});
 	<?php
+			}
 		}
 	?>
 
@@ -215,21 +219,8 @@ if(!empty($this->session->userdata('filter'))){
 		$('#nama_infaq').val($('#nama_infaq1').val());
 	});
 
-	$('.UpPembayaran').click(function(){
-    // $.ajax(
-    // {
-    //   url: '<?php //echo base_url('Product/get_by_id') ?>',
-    //   type: 'POST',
-    //   dataType: 'json',
-    //   data: {id:$(this).data('id')},
-    //   success: function(response)
-    //   {
-    //   	 //console.log("test");
-    //      console.log(response);
-    //        $('input[name="ids"]').val($(this).data('id'));
-    //   }
-    //  })
-	$('input[name="ids"]').val($(this).data('id'));
+	$('.UpPembayaranC').click(function(){
+		$('input[name="ids"]').val($(this).data('id'));
 
     $('#modalUpPembayaran').modal('show');
   });
