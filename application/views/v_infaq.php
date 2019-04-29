@@ -45,6 +45,7 @@ if(!empty($this->session->userdata('filter'))){
 			<th>Tanggal Input</th>
 			<th>Tanggal Bayar</th>
 			<th>Tanggal Verifikasi</th>
+			<th>Slip Gaji</th>
 			<th>Bukti Pembayaran</th>
 			<th>Status</th>
 			<th>Download Transaksi</th>
@@ -62,8 +63,13 @@ if(!empty($this->session->userdata('filter'))){
 			<td><?php echo $row->tanggal_bayar; ?></td>
 			<td><?php echo $row->tanggal_verifikasi; ?></td>
 			<td>
+				<a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>');">
+				<img src="<?php echo base_url() ?>assets/img/<?php echo $row->slip_gaji; ?>" width="150px" height="150px">
+			</td>
+			<td>
 				<?php 
 					if($row->status != 0){?>
+						<a href="JavaScript:newPopup('<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>');">
 						<img src="<?php echo base_url() ?>assets/img/<?php echo $row->bukti_pembayaran; ?>" width="150px" height="150px">
 					<?php
 					}
@@ -115,7 +121,9 @@ if(!empty($this->session->userdata('filter'))){
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="form-group">
+					<?php
+					echo form_open_multipart('C_zakat/insert_infaq',array('class' => 'form-horizontal Edit')); 
+					?><div class="form-group">
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nama Infaq :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="text" class="form-control" id="nama_infaq1" placeholder="Masukkan Nama Infaq" name="nama_infaq">
@@ -123,39 +131,36 @@ if(!empty($this->session->userdata('filter'))){
 						<label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Nominal Infaq :</label>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<input type="number" class="form-control" id="nominal_infaq1" placeholder="Masukkan Infaq" name="nominal_infaq">
+						</div>						
+						 <label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12" for="exampleInputFile">Upload Slip Gaji</label>
+               			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<input name="slip_gaji" type="file" class="form-control-file" id="slip_gaji1" aria-describedby="fileHelp">
+						</div>
+						<div class="modal-footer d-flex justify-content-center">
+							<!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#infoRek">Tambah</button> -->
+							<button type="submit" onclick="openInfoRek()" class="btn btn-primary">Tambah</button>
 						</div>
 					</div>
-					<div class="modal-footer d-flex justify-content-center">
-						<!-- <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#infoRek">Tambah</button> -->
-						<input type="button" name="btn" value="Tambah" id="confBtn" data-toggle="modal" data-target="#infoRek" class="btn btn-primary" />
-					</div>
+					<?php
+						echo form_close();
+					?>	
 				</div>
 			</div>
 		</div>
 
-		<div class="modal fade" id="infoRek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="infoRek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header text-center">
-						<h4 class="modal-title w-100 font-weight-bold">Informasi Pembayaran</h4>
-						<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span> -->
+						<h6 class="modal-title w-100">Informasi Pembayaran</h6>
+						<button type="button" onclick="location.href='http://localhost/Web-Zakat-dan-Infaq/index.php/c_zakat/hapus_data_infaq'" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 						</button>
 					</div>
 					<div class="modal-header text-center">
-						<p>Pembayaran Infaq bisa melalui No. Rekening : <b>8537 9348 3489</b></p>
+						<p>Pembayaran Zakat bisa melalui No. Rekening : <b>8537 9348 3489</b></p>
 					</div>
-					<?php
-					echo form_open_multipart('C_zakat/insert_infaq',array('class' => 'form-horizontal Edit')); 
-					?>
-						<input type="hidden"  class="form-control" id="nominal_infaq" name="nominal_infaq">
-						<input type="hidden"  class="form-control" id="nama_infaq" name="nama_infaq">
-						<div class="modal-footer d-flex justify-content-center">
-							<button type="submit" class="btn btn-primary">Ok</button>
-						</div>
-					<?php
-						echo form_close();
-					?>	
 				</div>
 			</div>
 		</div>
@@ -191,6 +196,20 @@ if(!empty($this->session->userdata('filter'))){
 </div>
 
 <script>
+	<?php
+		if ($_SESSION['infoRek']=="y"){
+	?>
+	$(window).on('load',function(){
+        $('#infoRek').modal('show');
+    });
+	<?php
+		}
+	?>
+
+	function newPopup(url) {
+    popupWindow = window.open(
+        url,'popUpWindow','height=700,width=800,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
+	}
 	$('#confBtn').click(function() {
 		$('#nominal_infaq').val($('#nominal_infaq1').val());
 		$('#nama_infaq').val($('#nama_infaq1').val());

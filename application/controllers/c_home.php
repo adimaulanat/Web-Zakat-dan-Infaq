@@ -11,6 +11,9 @@ class c_home extends CI_Controller{
 		$data['content_view']="v_home.php";
 		$data['artikel']=$this->m_home->get_data_artikel();
 		$this->load->view('v_template_frontend',$data);
+		if($this->session->userdata('status') == "login" && $this->session->userdata('jenis') != "0"){
+			redirect(site_url("c_zakat/zakatAdmin"));
+		}
 	}
 
 	function display_user(){

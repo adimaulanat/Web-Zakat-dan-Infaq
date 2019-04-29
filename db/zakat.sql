@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2019 at 04:37 PM
+-- Generation Time: Apr 29, 2019 at 06:28 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -40,13 +40,13 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`username`, `password`, `status`, `nama`, `email`) VALUES
 ('adi', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'adi maulana', 'adimaulana@gmail.con'),
-('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Admin', 'admin@gmail.com'),
+('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Fajar Panca', 'admin@gmail.com'),
 ('admin2', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'tesadmin', 'admin@gmail.co.id'),
 ('fajarpanca', '6f8de55c789477d5158eb81bdfdd3015', 0, 'fajarpancas', 'fajarpanca@gmail.com'),
 ('fajarpancas', 'be963885b1e3bd7bbe1f6f924458589a', 1, 'Fajar Panca', 'fajarpanca@gmai.com'),
 ('fajarpancass', '8bd5a17d5db7f0860110eba98dac464c', 1, 'pancaaaa', 'fajarpancasaputra@gmail.com'),
 ('panca', 'c9e023417fa66e852e4d1f920c051017', 0, 'panca', 'panca@gmail.com'),
-('username', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'user', 'username@gmail.com');
+('username', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'user2', 'username@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -81,6 +81,7 @@ CREATE TABLE `infaq` (
   `username` varchar(255) NOT NULL,
   `nama_infaq` varchar(255) NOT NULL,
   `nominal_infaq` int(11) NOT NULL,
+  `slip_gaji` varchar(255) NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `tanggal_input` date NOT NULL,
   `tanggal_bayar` date NOT NULL,
@@ -92,16 +93,13 @@ CREATE TABLE `infaq` (
 -- Dumping data for table `infaq`
 --
 
-INSERT INTO `infaq` (`id`, `username`, `nama_infaq`, `nominal_infaq`, `bukti_pembayaran`, `tanggal_input`, `tanggal_bayar`, `tanggal_verifikasi`, `status`) VALUES
-(1, 'username', 'infaq 1', 1000, 'rainy.png', '2019-04-02', '2019-04-14', '2019-04-14', 2),
-(3, 'adi', 'infaq 2', 2000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(4, 'adi', 'infaq 3', 20000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(5, 'adi', 'infaq 4', 323232, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(6, 'adi', 'infaq 5', 323222, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(7, 'adi', 'infaq 6', 232222, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(8, 'adi', 'infaq 7', 10000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(9, 'adi', 'infaq 8', 10000000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(10, 'username', 'Infaq 1', 70000, '', '2019-04-26', '0000-00-00', '0000-00-00', 0);
+INSERT INTO `infaq` (`id`, `username`, `nama_infaq`, `nominal_infaq`, `slip_gaji`, `bukti_pembayaran`, `tanggal_input`, `tanggal_bayar`, `tanggal_verifikasi`, `status`) VALUES
+(14, 'username', 'Infaq 1', 4000, 'rainy15.png', 'uang_logam_lima_ratus_rupiah_gambar_melati10.jpg', '2019-04-29', '2019-04-29', '0000-00-00', 1),
+(15, 'username', 'Infaq 2', 50000, 'rainy16.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(16, 'username', 'Infaq 3', 90000, 'rainy17.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(17, 'username', 'Infaq 4', 50000, 'rainy18.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(18, 'username', 'Infaq 5', 84000, 'rainy19.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(19, 'username', 'Infaq 6', 90200, 'rainy20.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -140,6 +138,7 @@ CREATE TABLE `zakat` (
   `nama_zakat` varchar(255) NOT NULL,
   `nominal_gaji` int(11) NOT NULL,
   `nominal_zakat` int(11) NOT NULL,
+  `slip_gaji` varchar(255) NOT NULL,
   `bukti_pembayaran` varchar(355) NOT NULL,
   `tanggal_input` date NOT NULL,
   `tanggal_bayar` date NOT NULL,
@@ -151,23 +150,13 @@ CREATE TABLE `zakat` (
 -- Dumping data for table `zakat`
 --
 
-INSERT INTO `zakat` (`id`, `username`, `nama_zakat`, `nominal_gaji`, `nominal_zakat`, `bukti_pembayaran`, `tanggal_input`, `tanggal_bayar`, `tanggal_verifikasi`, `status`) VALUES
-(20, 'adi', 'zakat 1', 9090909, 227273, '', '2019-04-02', '0000-00-00', '0000-00-00', 0),
-(21, 'adi', 'zakat 2', 9303030, 232576, '', '2019-04-02', '0000-00-00', '0000-00-00', 0),
-(22, 'adi', 'zakat 3', 292992, 7325, '', '2019-04-02', '0000-00-00', '0000-00-00', 0),
-(23, 'adi', 'zakat 3', 500000, 12500, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(24, 'adi', 'zakat 4', 10000, 250, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(25, 'adi', 'zakat 5', 20000000, 500000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(26, 'adi', 'zakat 5', 1090909090, 27272727, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(27, 'adi', 'zakat 6', 1000000, 25000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(28, 'adi', 'zakat 7', 10000000, 250000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(29, 'adi', 'zakat 8', 10000000, 250000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(30, 'adi', 'zakat 9', 113, 3, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(32, 'adi', 'zakat 10', 1000000, 25000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(33, 'adi', 'zakat 11', 10000000, 250000, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(34, 'adi', 'zakat 12', 12, 0, '', '2019-04-04', '0000-00-00', '0000-00-00', 0),
-(35, 'username', 'zakat 13', 1, 0, '', '2019-04-11', '0000-00-00', '0000-00-00', 0),
-(40, 'username', 'Zakat Fitrah', 42094290, 1052357, '', '2019-04-26', '0000-00-00', '0000-00-00', 0);
+INSERT INTO `zakat` (`id`, `username`, `nama_zakat`, `nominal_gaji`, `nominal_zakat`, `slip_gaji`, `bukti_pembayaran`, `tanggal_input`, `tanggal_bayar`, `tanggal_verifikasi`, `status`) VALUES
+(69, 'username', 'Zakat 1', 9000000, 225000, 'rainy8.png', 'uang_logam_lima_ratus_rupiah_gambar_melati9.jpg', '2019-04-29', '2019-04-29', '0000-00-00', 1),
+(70, 'username', 'Zakat 2', 10000000, 250000, 'rainy9.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(71, 'username', 'Zakat 3', 8000000, 200000, 'rainy10.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(72, 'username', 'Zakat 4', 2000000, 50000, 'rainy11.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(73, 'username', 'Zakat 5', 7000000, 175000, 'rainy12.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(74, 'username', 'Zakat 6', 4000000, 100000, 'rainy13.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0);
 
 --
 -- Indexes for dumped tables
@@ -216,7 +205,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `infaq`
 --
 ALTER TABLE `infaq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `unit_usaha_syariah`
 --
@@ -226,7 +215,7 @@ ALTER TABLE `unit_usaha_syariah`
 -- AUTO_INCREMENT for table `zakat`
 --
 ALTER TABLE `zakat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
