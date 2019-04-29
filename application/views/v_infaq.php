@@ -68,7 +68,7 @@ if(!empty($this->session->userdata('filter'))){
 					<?php
 					}
 					if($row->status == 0){?>
-						<button class="btn btn-primary btn-sm" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
+						<button class="btn btn-primary btn-sm UpPembayaran" id="UpPembayaran" data-id="<?php echo $row->id; ?>">Upload bukti pembayaran</button><?php 
 					} 
 				?>
 			</td>
@@ -196,7 +196,7 @@ if(!empty($this->session->userdata('filter'))){
 		$('#nama_infaq').val($('#nama_infaq1').val());
 	});
 
-	$('#UpPembayaran').click(function(){
+	$('.UpPembayaran').click(function(){
     // $.ajax(
     // {
     //   url: '<?php //echo base_url('Product/get_by_id') ?>',
