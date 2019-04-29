@@ -48,9 +48,21 @@ class M_zakat extends CI_Model{
         return $query;
     }
 
+    function get_list_data_print_transaksi($id)
+    {
+        $query=$this->db->query("SELECT * FROM zakat WHERE id = '$id'");
+        return $query;
+    }
+
     function get_list_data_infaq_print($vusername)
     {
         $query=$this->db->query("SELECT * FROM infaq WHERE username = '$vusername' AND status = '2' ORDER BY id");
+        return $query;
+    }
+
+    function get_list_data_infaq_print_transaksi($id)
+    {
+        $query=$this->db->query("SELECT * FROM infaq WHERE id = '$id'");
         return $query;
     }
 

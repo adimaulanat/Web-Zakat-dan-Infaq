@@ -49,6 +49,7 @@ if(!empty($this->session->userdata('filter'))){
 			<th>Tanggal Verifikasi</th>
 			<th>Bukti Pembayaran</th>
 			<th>Status</th>
+			<th>Download Transaksi</th>
 			<?php if($_SESSION['jenis'] == 1){ ?>
 			<th>Verifikasi</th>
 			<?php } ?>	
@@ -77,14 +78,19 @@ if(!empty($this->session->userdata('filter'))){
 					} 
 				?>
 			</td>
-			<td><?php if($row->status == 0){
+			<td>
+				<?php if($row->status == 0){
 				echo "Belum melakukan pembayaran";
 				} else if($row->status == 1){
 				echo "Belum di Verifikasi"; 
 				}                                       
 				else if($row->status == 2) {
 				echo "Sudah di Verifikasi";
-				}?></td>
+				}?>
+			</td>
+			<td>
+				<a style="float:right;" href="../c_zakat/print_user_zakat_transaksi/<?php echo $row->id?>"><button type="button" class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-down"></i> Download Transaksi</button></a>
+			</td>
 		</tr>
 		
 		<?php
