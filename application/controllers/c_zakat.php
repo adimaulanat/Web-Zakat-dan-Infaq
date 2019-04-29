@@ -415,6 +415,9 @@ class C_zakat extends CI_Controller{
 
     // Mencetak data zakat page admin
 	function print_admin_zakat(){
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
+
         $pdf = new FPDF('l','mm','A5');
         // membuat halaman baru
         $pdf->AddPage();
@@ -433,7 +436,7 @@ class C_zakat extends CI_Controller{
         $pdf->Cell(33,6,'TANGGAL VERIFIKASI',1,0,'C');
         $pdf->Cell(41,6,'STATUS',1,1,'C');
         $pdf->SetFont('Arial','',8);
-		$zakat = $this->m_zakat->get_list_data_all()->result();
+		$zakat = $this->m_zakat->print_by_month($bulan,$tahun)->result();
 		$no = 1;
         foreach ($zakat as $row){
             $pdf->Cell(7,6,$no,1,0,'C');
@@ -457,6 +460,9 @@ class C_zakat extends CI_Controller{
 
     // Mencetak data infaq page admin
 	function print_admin_infaq(){
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
+
         $pdf = new FPDF('l','mm','A5');
         // membuat halaman baru
         $pdf->AddPage();
@@ -475,7 +481,7 @@ class C_zakat extends CI_Controller{
         $pdf->Cell(35,6,'TANGGAL VERIFIKASI',1,0,'C');
         $pdf->Cell(50,6,'STATUS',1,1,'C');
         $pdf->SetFont('Arial','',8);
-		$infaq = $this->m_zakat->get_list_data_all_infaq()->result();
+		$infaq = $this->m_zakat->print_by_month_infaq($bulan,$tahun)->result();
 		$no = 1;
         foreach ($infaq as $row){
             $pdf->Cell(10,6,$no,1,0,'C');

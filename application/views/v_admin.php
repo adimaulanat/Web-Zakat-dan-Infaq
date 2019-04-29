@@ -240,14 +240,70 @@ if(!empty($this->session->userdata('filter'))){
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="../c_zakat/print_admin_zakat" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a>
+            <?php
+              echo form_open_multipart('c_zakat/print_admin_zakat');
+            ?>
+              <select name="bulan">
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+              <select name="tahun">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
+              <!-- <a href="../c_zakat/print_admin_zakat" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a> -->
+            <?php
+              echo form_close();
+            ?>
           </div>
           <?php } ?>
           <!-- Content Row -->
           <?php if($content_view == "v_infaqAdmin.php"){ ?>
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="../c_zakat/print_admin_infaq" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a>
+            <?php
+              echo form_open_multipart('c_zakat/print_admin_infaq');
+            ?>
+              <select name="bulan">
+                <option value="1">Januari</option>
+                <option value="2">Februari</option>
+                <option value="3">Maret</option>
+                <option value="4">April</option>
+                <option value="5">Mei</option>
+                <option value="6">Juni</option>
+                <option value="7">Juli</option>
+                <option value="8">Agustus</option>
+                <option value="9">September</option>
+                <option value="10">Oktober</option>
+                <option value="11">November</option>
+                <option value="12">Desember</option>
+              </select>
+              <select name="tahun">
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</button>
+              <!-- <a href="../c_zakat/print_admin_infaq" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Download Pdf</a> -->
+            <?php
+              echo form_close();
+            ?>
           </div>
           <?php } ?>
 
