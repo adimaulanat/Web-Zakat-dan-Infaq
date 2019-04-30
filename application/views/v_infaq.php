@@ -167,6 +167,23 @@ if(!empty($this->session->userdata('filter'))){
 			</div>
 		</div>
 
+		<div class="modal fade" id="errorUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h6 class="modal-title w-100">Gagal Upload Gambar</h6>
+						<button type="button" onclick="location.href='http://localhost/Web-Zakat-dan-Infaq/index.php/c_zakat/hapus_data_error_infaq'" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</button>
+					</div>
+					<div class="modal-header text-center">
+						<p>Ukuran gambar terlalu besar</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="modal fade" id="modalUpPembayaran" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -205,6 +222,18 @@ if(!empty($this->session->userdata('filter'))){
 				$(window).on('load',function(){
 						$('#infoRek').modal('show');
 				});
+	<?php
+			}
+		}
+	?>
+
+	<?php
+		if (isset($_SESSION['errorUp'])){
+			if ($_SESSION['errorUp']=="y"){
+	?>
+	$(window).on('load',function(){
+        $('#errorUp').modal('show');
+  });
 	<?php
 			}
 		}

@@ -93,9 +93,11 @@ class C_zakat extends CI_Controller{
 		$this->load->library('upload', $config);
  		
 		if ( ! $this->upload->do_upload('foto_bukti_pembayaran')){
-			echo $this->upload->data('file_name');
-			echo $this->upload->display_errors();
-			//$this->load->view('v_template_frontend', $error);
+			$data_session = array(
+				'errorUp' => "y",
+			);
+			$this->session->set_userdata($data_session);
+			redirect('C_zakat/display');
 		}else{
 			$data = array('upload_data' => $this->upload->data());
 			$vfoto = $this->upload->data('file_name');
@@ -119,9 +121,11 @@ class C_zakat extends CI_Controller{
 		$this->load->library('upload', $config);
  		
 		if ( ! $this->upload->do_upload('foto_bukti_pembayaran')){
-			echo $this->upload->data('file_name');
-			echo $this->upload->display_errors();
-			//$this->load->view('v_template_frontend', $error);
+			$data_session = array(
+				'errorUp' => "y",
+			);
+			$this->session->set_userdata($data_session);
+			redirect('C_zakat/infaq_display');
 		}else{
 			$data = array('upload_data' => $this->upload->data());
 			$vfoto = $this->upload->data('file_name');
@@ -152,8 +156,17 @@ class C_zakat extends CI_Controller{
 		$config['max_height']           = 768;
 		
 		$this->load->library('upload', $config);
-		$this->upload->do_upload('slip_gaji');
-			
+
+		// $this->upload->do_upload('slip_gaji');
+		
+		if (!$this->upload->do_upload('slip_gaji')) {
+			$data_session = array(
+				'errorUp' => "y",
+			);
+			$this->session->set_userdata($data_session);
+			redirect('C_zakat/display');
+		}else {
+		
 		$file = $this->upload->data();
 
 		$data = array(
@@ -176,6 +189,7 @@ class C_zakat extends CI_Controller{
 		$this->session->set_userdata($data_session);
 
 		redirect('C_zakat/display');
+		}
 	}
 
 	function hapus_data(){
@@ -189,6 +203,22 @@ class C_zakat extends CI_Controller{
 	function hapus_data_infaq(){
 		$data_session = array(
 				'infoRek' => "n",
+			);
+		$this->session->set_userdata($data_session);
+		redirect('C_zakat/infaq_display');
+	}
+
+	function hapus_data_error_zakat(){
+		$data_session = array(
+				'errorUp' => "n",
+			);
+		$this->session->set_userdata($data_session);
+		redirect('C_zakat/display');
+	}
+	
+	function hapus_data_error_infaq(){
+		$data_session = array(
+				'errorUp' => "n",
 			);
 		$this->session->set_userdata($data_session);
 		redirect('C_zakat/infaq_display');
@@ -272,7 +302,16 @@ class C_zakat extends CI_Controller{
 		
 		$this->load->library('upload', $config);
 		$this->upload->do_upload('slip_gaji');
-			
+
+		
+		if (!$this->upload->do_upload('slip_gaji')) {
+			$data_session = array(
+				'errorUp' => "y",
+			);
+			$this->session->set_userdata($data_session);
+			redirect('C_zakat/infaq_display');
+		}else {
+
 		$file = $this->upload->data();
 
 		$data = array(
@@ -294,6 +333,7 @@ class C_zakat extends CI_Controller{
 		$this->session->set_userdata($data_session);
 
 		redirect('C_zakat/infaq_display');
+		}
 	}
 		
 	function verifikasi()
