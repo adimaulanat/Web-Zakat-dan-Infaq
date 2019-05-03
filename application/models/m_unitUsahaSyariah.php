@@ -3,7 +3,7 @@
 class m_unitUsahaSyariah extends CI_Model{
 
     function get_data_unit(){
-		$query=$this->db->query("SELECT * FROM unit_usaha_syariah ORDER BY id");
+		$query=$this->db->query("call get_unit_usaha()");
 		return $query;
     }
 

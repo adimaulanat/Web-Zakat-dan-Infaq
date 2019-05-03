@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2019 at 06:28 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: May 03, 2019 at 11:29 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,16 @@ SET time_zone = "+00:00";
 --
 -- Database: `zakat`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_unit_usaha` ()  BEGIN
+SELECT * FROM unit_usaha_syariah ORDER BY id;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -39,7 +51,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`username`, `password`, `status`, `nama`, `email`) VALUES
-('adi', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'adi maulana', 'adimaulana@gmail.con'),
+('adi', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'Adi Maulana Triadi', 'adimaulana@gmail.con'),
+('adimt', '5f4dcc3b5aa765d61d8327deb882cf99', 0, 'Adi Maulana Triadi', 'adi@test.co'),
 ('admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'Fajar Panca', 'admin@gmail.com'),
 ('admin2', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 'tesadmin', 'admin@gmail.co.id'),
 ('fajarpanca', '6f8de55c789477d5158eb81bdfdd3015', 0, 'fajarpancas', 'fajarpanca@gmail.com'),
@@ -99,7 +112,27 @@ INSERT INTO `infaq` (`id`, `username`, `nama_infaq`, `nominal_infaq`, `slip_gaji
 (16, 'username', 'Infaq 3', 90000, 'rainy17.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
 (17, 'username', 'Infaq 4', 50000, 'rainy18.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
 (18, 'username', 'Infaq 5', 84000, 'rainy19.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
-(19, 'username', 'Infaq 6', 90200, 'rainy20.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0);
+(19, 'username', 'Infaq 6', 90200, 'rainy20.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(20, 'adi', 'Infaq Test', 1, 'pp.jpg', '', '2019-04-30', '0000-00-00', '0000-00-00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` tinyint(11) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `role`) VALUES
+(0, 'user'),
+(1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -156,7 +189,9 @@ INSERT INTO `zakat` (`id`, `username`, `nama_zakat`, `nominal_gaji`, `nominal_za
 (71, 'username', 'Zakat 3', 8000000, 200000, 'rainy10.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
 (72, 'username', 'Zakat 4', 2000000, 50000, 'rainy11.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
 (73, 'username', 'Zakat 5', 7000000, 175000, 'rainy12.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
-(74, 'username', 'Zakat 6', 4000000, 100000, 'rainy13.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0);
+(74, 'username', 'Zakat 6', 4000000, 100000, 'rainy13.png', '', '2019-04-29', '0000-00-00', '0000-00-00', 0),
+(75, 'adi', 'Zakar Penghasilan', 8000000, 200000, 'foto ijazah.jpg', 'foto_ktm_polban1.jpg', '2019-04-30', '2019-04-30', '0000-00-00', 1),
+(76, 'adi', 'Zakat Tes', 231312, 5783, 'foto_ktm_polban2.jpg', '', '2019-04-30', '0000-00-00', '0000-00-00', 0);
 
 --
 -- Indexes for dumped tables
@@ -166,7 +201,8 @@ INSERT INTO `zakat` (`id`, `username`, `nama_zakat`, `nominal_gaji`, `nominal_za
 -- Indexes for table `akun`
 --
 ALTER TABLE `akun`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `status` (`status`);
 
 --
 -- Indexes for table `artikel`
@@ -178,6 +214,12 @@ ALTER TABLE `artikel`
 -- Indexes for table `infaq`
 --
 ALTER TABLE `infaq`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -201,21 +243,36 @@ ALTER TABLE `zakat`
 --
 ALTER TABLE `artikel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `infaq`
 --
 ALTER TABLE `infaq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `unit_usaha_syariah`
 --
 ALTER TABLE `unit_usaha_syariah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `zakat`
 --
 ALTER TABLE `zakat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `akun`
+--
+ALTER TABLE `akun`
+  ADD CONSTRAINT `akun_ibfk_1` FOREIGN KEY (`status`) REFERENCES `role` (`id`) ON DELETE NO ACTION;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
